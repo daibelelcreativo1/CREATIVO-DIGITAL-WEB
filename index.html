@@ -72,9 +72,9 @@
                 </div>
 
                 <!-- Main Logo (hidden until pen animation ends) -->
-                <div id="hero-title" style="visibility:hidden; margin:2rem 0 0.5rem;">
+                <div id="hero-title" style="visibility:hidden; margin:-1rem 0 0.5rem;">
                     <img src="img/logo.png" alt="Creativo Digital"
-                         style="height:clamp(60px,10vw,120px); object-fit:contain;"
+                         style="height:clamp(200px,32vw,420px); object-fit:contain; margin-top:-2rem;"
                          onerror="this.outerHTML='<h1 style=\'font-size:var(--text-display);font-weight:800;line-height:1.1;\'>CREATIVO <span style=\'color:var(--accent-cyan);\'>DIGITAL</span></h1>'">
                 </div>
 
@@ -174,9 +174,11 @@
                 <!-- Formulario -->
                 <div class="glass" style="padding: 3rem; border-radius: var(--radius-card);">
                     <h3 style="font-size: var(--text-2xl); margin-bottom: 2rem;">Iniciemos algo grande</h3>
-                    <form class="contact-form" action="https://formsubmit.co/daibelelcreativo1@gmail.com" method="POST">
-                        <input type="hidden" name="_next" value="">
-                        <input type="hidden" name="_captcha" value="false">
+
+                    <!-- Feedback banner -->
+                    <div id="form-feedback" style="display:none; padding:1rem 1.2rem; border-radius:10px; margin-bottom:1.5rem; font-size:0.9rem; font-weight:600;"></div>
+
+                    <form class="contact-form" id="contact-form" novalidate>
                         <div class="input-group">
                             <label for="name">Nombre Completo</label>
                             <input type="text" id="name" name="nombre" required class="interactable" placeholder="Ej. Juan Pérez">
@@ -189,15 +191,21 @@
                             <label for="message">Visión del Proyecto</label>
                             <textarea id="message" name="mensaje" rows="4" required class="interactable" placeholder="Cuéntanos brevemente sobre tu proyecto..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary interactable" style="width:100%; margin-top:1rem;">
+                        <button type="submit" id="form-submit-btn" class="btn btn-primary interactable" style="width:100%; margin-top:1rem;">
                             Enviar Mensaje
                         </button>
                         
                         <!-- Redes Sociales de Contacto Rápido -->
                         <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem;">
-                            <a href="#" target="_blank" class="btn btn-primary interactable" style="height:48px; width:48px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%;"><img src="img/instagram.png" alt="Instagram" style="height:24px; width:24px; filter: brightness(100); pointer-events:none;"></a>
-                            <a href="#" target="_blank" class="btn btn-primary interactable" style="height:48px; width:48px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%;"><img src="img/youtube.png" alt="Youtube" style="height:24px; width:24px; filter: brightness(100); pointer-events:none;"></a>
-                            <a href="https://wa.me/#" target="_blank" class="btn btn-primary interactable" style="height:48px; width:48px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%;"><img src="img/whatsapp.png" alt="Whatsapp" style="height:24px; width:24px; filter: brightness(100); pointer-events:none;"></a>
+                            <a href="https://www.instagram.com/daibelelcreativo?igsh=NjlsNnR4MnlsZ3Bq" target="_blank" class="btn btn-primary interactable" style="height:48px; width:48px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%;" title="Instagram">
+                                <img src="img/instagram.png" alt="Instagram" style="height:24px; width:24px; filter: brightness(100); pointer-events:none;" onerror="this.outerHTML='<i data-lucide=\'instagram\' style=\'color:#fff;\'>\</i>'">
+                            </a>
+                            <a href="https://www.youtube.com/@daibelelcreativo" target="_blank" class="btn btn-primary interactable" style="height:48px; width:48px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%;" title="YouTube">
+                                <img src="img/youtube.png" alt="Youtube" style="height:24px; width:24px; filter: brightness(100); pointer-events:none;" onerror="this.outerHTML='<i data-lucide=\'youtube\' style=\'color:#fff;\'>\</i>'">
+                            </a>
+                            <a href="https://wa.me/qr/ZXZPRAOCCZDZP1" target="_blank" class="btn btn-primary interactable" style="height:48px; width:48px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%;" title="WhatsApp">
+                                <img src="img/whatsapp.png" alt="Whatsapp" style="height:24px; width:24px; filter: brightness(100); pointer-events:none;" onerror="this.outerHTML='<i data-lucide=\'message-circle\' style=\'color:#fff;\'>\</i>'">
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -208,9 +216,12 @@
     <footer>
         <h2 class="footer-logo">CREATIVO DIGITAL</h2>
         <div class="social-links">
-            <a href="#" class="interactable" aria-label="Instagram"><i data-lucide="instagram"></i></a>
-            <a href="#" class="interactable" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-            <a href="#" class="interactable" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+            <a href="https://www.instagram.com/daibelelcreativo?igsh=NjlsNnR4MnlsZ3Bq" target="_blank" class="interactable" aria-label="Instagram">
+                <i data-lucide="instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@daibelelcreativo" target="_blank" class="interactable" aria-label="YouTube">
+                <i data-lucide="youtube"></i>
+            </a>
         </div>
         <p style="color: var(--text-secondary); font-size: var(--text-sm);">
             &copy; 2026 Creativo Digital - Daibel el Creativo. Todos los derechos reservados.

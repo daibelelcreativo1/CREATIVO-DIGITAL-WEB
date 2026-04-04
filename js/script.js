@@ -5,9 +5,9 @@
    ========================================================================= */
 
 const CONTENT_POOL = {
-    branding: Array.from({length: 20}, (_, i) => ({ type:'image', src:`https://picsum.photos/seed/brand${i+1}/800/600`, title:`Diseño ${i+1}`, subtitle:'Diseño Gráfico', alt:`Branding ${i+1}` })),
-    renders:  Array.from({length: 20}, (_, i) => ({ type:'image', src:`https://picsum.photos/seed/rend${i+1}/800/600`,  title:`Render ${i+1}`,  subtitle:'Renderizado 3D',  alt:`Render ${i+1}` })),
-    videos:   Array.from({length: 20}, (_, i) => ({ type:'image', src:`https://picsum.photos/seed/vid${i+1}/800/600`,   title:`Video ${i+1}`,   subtitle:'Área de Video',   alt:`Video ${i+1}` }))
+    branding: Array.from({ length: 20 }, (_, i) => ({ type: 'image', src: `https://picsum.photos/seed/brand${i + 1}/800/600`, title: `Diseño ${i + 1}`, subtitle: 'Diseño Gráfico', alt: `Branding ${i + 1}` })),
+    renders: Array.from({ length: 20 }, (_, i) => ({ type: 'image', src: `https://picsum.photos/seed/rend${i + 1}/800/600`, title: `Render ${i + 1}`, subtitle: 'Renderizado 3D', alt: `Render ${i + 1}` })),
+    videos: Array.from({ length: 20 }, (_, i) => ({ type: 'image', src: `https://picsum.photos/seed/vid${i + 1}/800/600`, title: `Video ${i + 1}`, subtitle: 'Área de Video', alt: `Video ${i + 1}` }))
 };
 
 // Deterministic shuffle using a numeric seed (Mulberry32)
@@ -15,12 +15,12 @@ function seededShuffle(arr, seed) {
     const a = [...arr];
     let s = seed;
     const rand = () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
-    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1));[a[i], a[j]] = [a[j], a[i]]; }
     return a;
 }
 
 // Seed based on current day (YYYYMMDD as integer)
-function getDailySeed()  { const d = new Date(); return d.getFullYear() * 10000 + (d.getMonth()+1) * 100 + d.getDate(); }
+function getDailySeed() { const d = new Date(); return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate(); }
 // Seed based on ISO week number
 function getWeeklySeed() { const d = new Date(); const startOfYear = new Date(d.getFullYear(), 0, 1); return Math.ceil(((d - startOfYear) / 86400000 + startOfYear.getDay() + 1) / 7) + d.getFullYear() * 100; }
 
@@ -39,6 +39,7 @@ function bootstrap() {
     init3DCarousel();
     initWaterRipple();
     initPenAnimation();
+    initFormHandler();
 }
 
 // If GSAP / THREE are already loaded, run immediately after DOM is ready.
@@ -65,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
    CURSOR
    ========================================================================= */
 function initCursor() {
-    const dot   = document.getElementById('cursor-dot');
-    const ring  = document.getElementById('cursor-outline');
-    const glow  = document.getElementById('cursor-glow');
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-outline');
+    const glow = document.getElementById('cursor-glow');
     if (!dot || !ring) return;
 
     // Hide on touch devices
@@ -78,11 +79,11 @@ function initCursor() {
 
     document.addEventListener('mousemove', e => {
         const x = e.clientX + 'px';
-        const y = e.clientY  + 'px';
-        dot.style.left  = x;
-        dot.style.top   = y;
+        const y = e.clientY + 'px';
+        dot.style.left = x;
+        dot.style.top = y;
         ring.style.left = x;
-        ring.style.top  = y;
+        ring.style.top = y;
         // Glow moves slowly — CSS transition handles the watery delay
         if (glow) { glow.style.left = x; glow.style.top = y; }
     });
@@ -101,22 +102,22 @@ function initWaterRipple() {
     if (!canvas || typeof THREE === 'undefined') return;
 
     try {
-        const scene    = new THREE.Scene();
-        const camera   = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+        const scene = new THREE.Scene();
+        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const loader  = new THREE.TextureLoader();
-        const bgUrl   = document.getElementById('hero-img-src')?.dataset.src
-                        || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=60&w=1200';
+        const loader = new THREE.TextureLoader();
+        const bgUrl = document.getElementById('hero-img-src')?.dataset.src
+            || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=60&w=1200';
         const texture = loader.load(bgUrl);
 
         const mat = new THREE.ShaderMaterial({
             uniforms: {
                 u_texture: { value: texture },
-                u_mouse:   { value: new THREE.Vector2(0.5, 0.5) },
-                u_time:    { value: 0 }
+                u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
+                u_time: { value: 0 }
             },
             vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position,1.0); }`,
             fragmentShader: `
@@ -169,10 +170,10 @@ function initWaterRipple() {
    ILLUSTRATOR PEN ANIMATION
    ========================================================================= */
 function initPenAnimation() {
-    const svg   = document.getElementById('illustrator-svg');
-    const pen   = document.getElementById('pen-tool');
+    const svg = document.getElementById('illustrator-svg');
+    const pen = document.getElementById('pen-tool');
     const title = document.getElementById('hero-title');
-    if (!svg || !title) { if(title) title.style.visibility = 'visible'; return; }
+    if (!svg || !title) { if (title) title.style.visibility = 'visible'; return; }
 
     if (typeof gsap === 'undefined') {
         title.style.visibility = 'visible';
@@ -196,9 +197,11 @@ function initPenAnimation() {
         "M 170 22 L 170 78",
         // V
         "M 178 22 L 188 78 L 198 22",
-        // O
-        "M 213 50 C 213 28 238 28 238 50 C 238 72 213 72 213 50 Z",
-        // space — skip
+        // O  — made larger to match letter height of surrounding glyphs
+        "M 207 50 C 207 18 245 18 245 50 C 245 82 207 82 207 50 Z",
+        // === SPACE between CREATIVO and DIGITAL (invisible stroke for pen gap) ===
+        "M 252 50 L 252 50",
+
         // D
         "M 256 22 L 256 78 Q 284 78 284 50 Q 284 22 256 22",
         // I
@@ -221,13 +224,15 @@ function initPenAnimation() {
         delay: 0.4,
         onComplete: () => {
             // Flash highlight, then fade SVG and reveal logo
-            gsap.to(svg, { filter: 'brightness(2)', duration: 0.15, yoyo: true, repeat: 1, onComplete: () => {
-                gsap.to([svg, pen], { opacity: 0, duration: 0.6 });
-                gsap.delayedCall(0.4, () => {
-                    title.style.visibility = 'visible';
-                    gsap.from(title, { y: 20, opacity: 0, duration: 1.2, ease: 'power3.out' });
-                });
-            }});
+            gsap.to(svg, {
+                filter: 'brightness(2)', duration: 0.15, yoyo: true, repeat: 1, onComplete: () => {
+                    gsap.to([svg, pen], { opacity: 0, duration: 0.6 });
+                    gsap.delayedCall(0.4, () => {
+                        title.style.visibility = 'visible';
+                        gsap.from(title, { y: 20, opacity: 0, duration: 1.2, ease: 'power3.out' });
+                    });
+                }
+            });
         }
     });
 
@@ -257,10 +262,10 @@ function initPenAnimation() {
                 const pt = path.getPointAtLength(drawn);
                 // Convert SVG coords to container px
                 const rect = svg.getBoundingClientRect();
-                const sx = rect.width  / 440;
+                const sx = rect.width / 440;
                 const sy = rect.height / 100;
                 pen.style.left = (pt.x * sx) + 'px';
-                pen.style.top  = (pt.y * sy) + 'px';
+                pen.style.top = (pt.y * sy) + 'px';
             },
             onComplete() {
                 // Anchor dot at end
@@ -332,8 +337,8 @@ function renderPortfolio() {
 
     // Combine user's custom portfolioData (if defined) with pool content
     const customItems = (typeof portfolioData !== 'undefined') ? portfolioData : [];
-    const poolItems   = seededShuffle(ALL_POOL(), getWeeklySeed()).slice(0, Math.max(0, 9 - customItems.length));
-    const allItems    = [...customItems, ...poolItems].slice(0, 9); // max 9 bento items
+    const poolItems = seededShuffle(ALL_POOL(), getWeeklySeed()).slice(0, Math.max(0, 9 - customItems.length));
+    const allItems = [...customItems, ...poolItems].slice(0, 9); // max 9 bento items
 
     allItems.forEach(item => {
         const div = document.createElement('div');
@@ -358,40 +363,42 @@ function renderPortfolio() {
 /* =========================================================================
    GALLERY OVERLAY  –  window-level so onclick="openGallery(...)" works
    ========================================================================= */
-window.openGallery = function(type) {
+window.openGallery = function (type) {
     const overlay = document.getElementById('gallery-overlay');
     const titleEl = document.getElementById('gallery-title');
-    const grid    = document.getElementById('gallery-grid');
+    const grid = document.getElementById('gallery-grid');
     if (!overlay || !grid) { console.error('Gallery elements not found'); return; }
 
     const labels = {
         branding: 'DISEÑO GRÁFICO & BRANDING',
-        renders:  'RENDERIZADO 3D',
-        videos:   'PRODUCCIÓN AUDIOVISUAL'
+        renders: 'RENDERIZADO 3D',
+        videos: 'PRODUCCIÓN AUDIOVISUAL'
     };
     titleEl.textContent = labels[type] || 'GALERÍA';
     grid.innerHTML = '';
 
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 0; i < 20; i++) {
         const wrap = document.createElement('div');
         wrap.className = 'sub-gallery-item';
 
         if (type === 'videos') {
-            // Use demo videos (every item is a video)
+            // Use pool image (video thumbnails) — videos also stored as images in pool
+            const item = CONTENT_POOL.videos[i];
             const v = document.createElement('video');
             v.src = 'https://www.w3schools.com/html/mov_bbb.mp4';
             v.loop = true; v.muted = true; v.playsInline = true;
             v.addEventListener('mouseenter', () => v.play());
             v.addEventListener('mouseleave', () => v.pause());
             wrap.appendChild(v);
-            wrap.onclick = () => openLightbox({ src: v.src, type: 'video' });
+            wrap.onclick = () => window.openLightbox({ src: v.src, type: 'video' });
         } else {
-            const seed = type === 'branding' ? i : i + 40;
-            const url  = `https://picsum.photos/seed/${seed}/800/600`;
-            const img  = document.createElement('img');
-            img.src = url; img.alt = `Project ${i}`; img.loading = 'lazy';
+            // Pull EXACTLY the same images used in carousel/portfolio
+            const pool = type === 'branding' ? CONTENT_POOL.branding : CONTENT_POOL.renders;
+            const item = pool[i];
+            const img = document.createElement('img');
+            img.src = item.src; img.alt = item.alt; img.loading = 'lazy';
             wrap.appendChild(img);
-            wrap.onclick = () => openLightbox({ src: url, type: 'image' });
+            wrap.onclick = () => window.openLightbox({ src: item.src, type: 'image' });
         }
 
         grid.appendChild(wrap);
@@ -402,7 +409,7 @@ window.openGallery = function(type) {
     lucide.createIcons();
 };
 
-window.closeGallery = function() {
+window.closeGallery = function () {
     document.getElementById('gallery-overlay').classList.remove('active');
     document.body.style.overflow = '';
 };
@@ -410,8 +417,8 @@ window.closeGallery = function() {
 /* =========================================================================
    LIGHTBOX
    ========================================================================= */
-window.openLightbox = function(item) {
-    const lb      = document.getElementById('lightbox');
+window.openLightbox = function (item) {
+    const lb = document.getElementById('lightbox');
     const content = document.getElementById('lightbox-content');
     if (!lb || !content) return;
 
@@ -420,13 +427,6 @@ window.openLightbox = function(item) {
         content.innerHTML = `
         <div class="custom-player" id="custom-player">
             <video id="player-video" src="${item.src}" preload="metadata"></video>
-            <div class="player-overlay" id="player-overlay">
-                <div class="player-center-btn" id="player-play-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon id="play-icon" points="5 3 19 12 5 21 5 3" fill="currentColor"/>
-                    </svg>
-                </div>
-            </div>
             <div class="player-controls">
                 <div class="player-progress-wrap">
                     <div class="player-progress-bg">
@@ -461,8 +461,8 @@ function initCustomPlayer() {
     const overlay = document.getElementById('player-overlay');
     if (!video) return;
 
-    const fmt = s => `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
-    const svgPlay  = `<polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/>`;
+    const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+    const svgPlay = `<polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/>`;
     const svgPause = `<rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/>`;
 
     const doToggle = () => {
@@ -470,11 +470,13 @@ function initCustomPlayer() {
         else { video.pause(); toggle.querySelector('svg').innerHTML = svgPlay; }
     };
 
-    playBtn.onclick = doToggle;
-    toggle.onclick  = doToggle;
-    overlay.onclick = doToggle;
-    vol.oninput     = () => video.volume = vol.value;
-    fs.onclick      = () => document.fullscreenElement ? document.exitFullscreen() : document.getElementById('custom-player').requestFullscreen();
+    toggle.onclick = doToggle;
+    vol.oninput = () => video.volume = vol.value;
+    if (fs) fs.onclick = () => {
+        const p = document.getElementById('custom-player');
+        if (!document.fullscreenElement) p.requestFullscreen();
+        else document.exitFullscreen();
+    };
 
     video.addEventListener('timeupdate', () => {
         if (!video.duration) return;
@@ -487,11 +489,11 @@ function initCustomPlayer() {
         video.currentTime = ((e.clientX - r.left) / r.width) * video.duration;
     });
 
-    video.play().catch(() => {}); // autoplay
+    video.play().catch(() => { }); // autoplay
 }
 
-window.closeLightbox = function() {
-    const lb      = document.getElementById('lightbox');
+window.closeLightbox = function () {
+    const lb = document.getElementById('lightbox');
     const content = document.getElementById('lightbox-content');
     if (!lb) return;
     lb.classList.remove('active');
@@ -507,19 +509,19 @@ document.addEventListener('click', e => {
 /* =========================================================================
    SEARCH
    ========================================================================= */
-window.openSearch = function() {
+window.openSearch = function () {
     const modal = document.getElementById('search-modal');
     if (!modal) return;
     modal.classList.add('active');
     setTimeout(() => document.getElementById('search-input')?.focus(), 50);
 };
 
-window.closeSearch = function() {
+window.closeSearch = function () {
     document.getElementById('search-modal')?.classList.remove('active');
 };
 
 function initSearchLogic() {
-    const input   = document.getElementById('search-input');
+    const input = document.getElementById('search-input');
     const results = document.getElementById('search-results');
     if (!input || !results) return;
 
@@ -564,7 +566,7 @@ function initSearchLogic() {
    MOBILE MENU
    ========================================================================= */
 function initMobileMenu() {
-    const btn   = document.getElementById('mobile-menu-btn');
+    const btn = document.getElementById('mobile-menu-btn');
     const links = document.getElementById('nav-links');
     if (!btn || !links) return;
 
@@ -572,6 +574,62 @@ function initMobileMenu() {
     links.querySelectorAll('a').forEach(a =>
         a.addEventListener('click', () => links.classList.remove('active'))
     );
+}
+
+/* =========================================================================
+   CONTACT FORM HANDLER (AJAX)
+   ========================================================================= */
+function initFormHandler() {
+    const form = document.getElementById('contact-form');
+    const feedback = document.getElementById('form-feedback');
+    const submitBtn = document.getElementById('form-submit-btn');
+    if (!form || !feedback || !submitBtn) return;
+
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+
+        // Basic validation
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        feedback.style.display = 'block';
+        feedback.textContent = 'Procesando mensaje...';
+        feedback.style.background = 'rgba(0,229,255,0.1)';
+        feedback.style.color = 'var(--accent-cyan)';
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch('https://formsubmit.co/ajax/daibelelcreativo1@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                feedback.textContent = '¡Mensaje enviado con éxito! Nos contactaremos pronto.';
+                feedback.style.background = 'rgba(0,255,100,0.1)';
+                feedback.style.color = '#00ff64';
+                form.reset();
+            } else {
+                throw new Error();
+            }
+        } catch (err) {
+            feedback.textContent = 'Error al enviar. Por favor, intenta de nuevo o usa WhatsApp.';
+            feedback.style.background = 'rgba(255,50,50,0.1)';
+            feedback.style.color = '#ff3232';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar Mensaje';
+            setTimeout(() => { feedback.style.display = 'none'; }, 6000);
+        }
+    };
 }
 
 /* =========================================================================
