@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creativo Digital | Resultados Reales</title>
+    <meta name="description" content="Fusión de técnica, arquitectura y diseño gráfico para crear soluciones visuales y espaciales funcionales y memorables.">
+    <meta name="theme-color" content="#171717">
+    
+    <!-- Fuentes Google: Inter para base, y múltiples tipografías creativas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&family=Space+Grotesk:wght@700&family=Syne:wght@800&family=Cinzel:wght@700&family=Abril+Fatface&display=swap" rel="stylesheet">
+    
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Fondo Dinámico -->
+    <div class="bg-dynamic" id="bg-dynamic"></div>
+    <canvas id="fireflies" style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index: -1; pointer-events: none; opacity:0.8;"></canvas>
+
+    <!-- Cursor Personalizado -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <!-- Navegación -->
+    <header class="glass" id="header">
+        <a href="#" class="logo-container interactable">
+            <img src="img/logo.png" alt="Creativo Digital Logo" class="logo-img" onerror="this.style.display='none'">
+        </a>
+        
+        <nav style="display: flex; align-items: center; gap: 1.5rem;">
+            <button class="menu-toggle interactable" id="mobile-menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" class="interactable">Inicio</a></li>
+                <li><a href="#portfolio" class="interactable">Portafolio</a></li>
+                <li><a href="#services" class="interactable">Servicios</a></li>
+                <li><a href="#contact" class="interactable">Contacto</a></li>
+            </ul>
+            <button class="interactable btn-secondary" onclick="openSearch()" style="background: none; border: none; color: var(--text-primary); cursor: pointer; display: flex; align-items: center;" aria-label="Buscar">
+                <i data-lucide="search"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección Hero (Fondo de Luciernagas y Morph Typo) -->
+        <section id="hero" class="hero-clean" style="padding: 2rem; min-height: 100vh; position: relative; overflow: hidden;">
+            <div class="hero-content morph-container" style="pointer-events: auto;">
+                <div class="morph-architecture" id="morph-text">
+                    <span>C</span><span>R</span><span>E</span><span>A</span><span>T</span><span>I</span><span>V</span><span>O</span>
+                    <span style="margin-left: 2vw; background-color:transparent !important;" class="space"> </span>
+                    <span>D</span><span>I</span><span>G</span><span>I</span><span>T</span><span>A</span><span>L</span>
+                </div>
+            </div>
+
+            <!-- Marquee de ancho completo fuera del content -->
+            <div class="marquee-wrapper">
+                <div class="marquee-content">
+                    <span>Innovación Espacial & Diseño Minimalista</span><span class="dot">•</span>
+                    <span>Creatividad sin límites</span><span class="dot">•</span>
+                    <span>Arquitectura del futuro</span><span class="dot">•</span>
+                    <span>Innovación Espacial & Diseño Minimalista</span><span class="dot">•</span>
+                    <span>Creatividad sin límites</span><span class="dot">•</span>
+                    <span>Arquitectura del futuro</span><span class="dot">•</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Portafolio (Bento Grid) -->
+        <section id="portfolio">
+            <div class="section-header">
+                <h2 class="section-title">Obras Maestras</h2>
+                <p style="color: var(--text-secondary);">Un vistazo a nuestra arquitectura y diseño.</p>
+            </div>
+            
+            <div class="bento-grid" id="portfolio-grid">
+                <!-- Los elementos se cargarán aquí dinámicamente usando data.js -->
+            </div>
+        </section>
+
+        <!-- Sección Servicios -->
+        <section id="services">
+            <div class="section-header">
+                <h2 class="section-title">Nuestra Experiencia</h2>
+                <p style="color: var(--text-secondary);">Soluciones integrales de diseño.</p>
+            </div>
+
+            <div class="services-grid">
+
+                
+                <div class="service-card glass interactable">
+                    <div class="service-icon">
+                        <i data-lucide="pen-tool" width="32" height="32"></i>
+                    </div>
+                    <h3>Diseño Gráfico</h3>
+                    <p>Identidad visual, branding, interfaces de usuario (UI) y experiencia de usuario (UX) centrada en conversiones.</p>
+                </div>
+
+                <div class="service-card glass interactable">
+                    <div class="service-icon">
+                        <i data-lucide="box" width="32" height="32"></i>
+                    </div>
+                    <h3>Renderizado 3D</h3>
+                    <p>Visualización arquitectónica inmersiva hiperrealista para anticipar el resultado antes de la construcción.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios y Contacto -->
+        <section id="contact">
+            <div class="contact-layout">
+                <!-- Carrusel Mock -->
+                <div class="testimonial-carousel glass">
+                    <i data-lucide="quote" width="48" height="48" style="color:var(--accent-cyan); margin-bottom:1rem; opacity:0.5;"></i>
+                    <p class="testimonial-quote">"Fusionamos la estética del diseño moderno con la precisión arquitectónica para crear experiencias visuales y espacios inmersivos incomparables."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: url('img/avatar-1.jpg') center/cover;"></div>
+                        <div>
+                            <h4 style="font-weight:600;">Daibel el Creativo</h4>
+                            <p style="color:var(--text-secondary); font-size:var(--text-sm);">CEO, Creativo Digital</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario -->
+                <div class="glass" style="padding: 3rem; border-radius: var(--radius-card);">
+                    <h3 style="font-size: var(--text-2xl); margin-bottom: 2rem;">Iniciemos algo grande</h3>
+                    <form class="contact-form" action="https://formsubmit.co/daibelelcreativo1@gmail.com" method="POST">
+                        <input type="hidden" name="_next" value="">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div class="input-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="nombre" required class="interactable" placeholder="Ej. Juan Pérez">
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" required class="interactable" placeholder="juan@correo.com">
+                        </div>
+                        <div class="input-group">
+                            <label for="message">Visión del Proyecto</label>
+                            <textarea id="message" name="mensaje" rows="4" required class="interactable" placeholder="Cuéntanos brevemente sobre tu proyecto..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary interactable" style="width:100%; margin-top:1rem;">
+                            Enviar Mensaje
+                        </button>
+                        
+                        <!-- Redes Sociales de Contacto Rápido -->
+                        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem;">
+                            <a href="#" target="_blank" class="btn btn-primary interactable" style="height:48px; width:48px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%;"><img src="img/instagram.png" alt="Instagram" style="height:24px; width:24px; filter: brightness(100); pointer-events:none;"></a>
+                            <a href="#" target="_blank" class="btn btn-primary interactable" style="height:48px; width:48px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%;"><img src="img/youtube.png" alt="Youtube" style="height:24px; width:24px; filter: brightness(100); pointer-events:none;"></a>
+                            <a href="https://wa.me/#" target="_blank" class="btn btn-primary interactable" style="height:48px; width:48px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%;"><img src="img/whatsapp.png" alt="Whatsapp" style="height:24px; width:24px; filter: brightness(100); pointer-events:none;"></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <h2 class="footer-logo">CREATIVO DIGITAL</h2>
+        <div class="social-links">
+            <a href="#" class="interactable" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+            <a href="#" class="interactable" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+            <a href="#" class="interactable" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+        </div>
+        <p style="color: var(--text-secondary); font-size: var(--text-sm);">
+            &copy; 2026 Creativo Digital - Daibel el Creativo. Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <!-- Lightbox Dinámico -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close interactable" onclick="closeLightbox()"><i data-lucide="x"></i></span>
+        <div class="lightbox-content" id="lightbox-content">
+            <!-- Se inyecta media aquí -->
+        </div>
+    </div>
+
+    <!-- Modal Buscador -->
+    <div id="search-modal" class="lightbox">
+        <span class="lightbox-close interactable" onclick="closeSearch()"><i data-lucide="x"></i></span>
+        <div style="width: 90%; max-width: 600px; padding: 2rem; background: var(--glass-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: var(--radius-card); display: flex; flex-direction: column; gap: 1.5rem; position: relative;">
+            <div style="display:flex; align-items:center; background: rgba(0,0,0,0.5); border: 1px solid var(--accent-cyan); border-radius: var(--radius-btn); padding: 0.5rem 1rem;">
+                <i data-lucide="search" style="color: var(--accent-cyan);"></i>
+                <input type="text" id="search-input" class="interactable" placeholder="Buscar proyectos por nombre..." style="width: 100%; font-size: 1.2rem; padding: 0.5rem 1rem; border: none; background: transparent; color: white; outline: none;">
+            </div>
+            <div id="search-results" style="max-height: 50vh; overflow-y: auto; display:flex; flex-direction: column; gap: 0.5rem;"></div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         11. JAVASCRIPT LOGIC
+         ========================================================================= -->
+    <script src="js/data.js" defer></script>
+    <script src="js/script.js" defer></script>
+</body>
+</html>
