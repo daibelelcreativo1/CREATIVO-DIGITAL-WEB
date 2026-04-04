@@ -14,17 +14,24 @@
     
     <!-- Iconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Fondo Dinámico -->
-    <div class="bg-dynamic" id="bg-dynamic"></div>
-    <canvas id="fireflies" style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index: -1; pointer-events: none; opacity:0.8;"></canvas>
+    <!-- Water Ripple Background -->
+    <canvas id="liquid-canvas" class="liquid-canvas"></canvas>
+    <!-- Global Dark Glass Overlay (always on, entire page) -->
+    <div class="global-overlay"></div>
 
     <!-- Cursor Personalizado -->
     <div class="cursor-dot" id="cursor-dot"></div>
     <div class="cursor-outline" id="cursor-outline"></div>
+    <!-- Cursor Ambient Glow -->
+    <div class="cursor-glow" id="cursor-glow"></div>
 
     <!-- Navegación -->
     <header class="glass" id="header">
@@ -42,32 +49,62 @@
                 <li><a href="#services" class="interactable">Servicios</a></li>
                 <li><a href="#contact" class="interactable">Contacto</a></li>
             </ul>
-            <button class="interactable btn-secondary" onclick="openSearch()" style="background: none; border: none; color: var(--text-primary); cursor: pointer; display: flex; align-items: center;" aria-label="Buscar">
+            <button class="interactable btn-secondary" onclick="if(typeof openSearch === 'function') openSearch()" style="background: none; border: none; color: var(--text-primary); cursor: pointer; display: flex; align-items: center;" aria-label="Buscar">
                 <i data-lucide="search"></i>
             </button>
         </nav>
     </header>
 
     <main>
-        <!-- Sección Hero (Fondo de Luciernagas y Morph Typo) -->
-        <section id="hero" class="hero-clean" style="padding: 2rem; min-height: 100vh; position: relative; overflow: hidden;">
-            <div class="hero-content morph-container" style="pointer-events: auto;">
-                <div class="morph-architecture" id="morph-text">
-                    <span>C</span><span>R</span><span>E</span><span>A</span><span>T</span><span>I</span><span>V</span><span>O</span>
-                    <span style="margin-left: 2vw; background-color:transparent !important;" class="space"> </span>
-                    <span>D</span><span>I</span><span>G</span><span>I</span><span>T</span><span>A</span><span>L</span>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-clean">
+            <!-- Dark overlay so ripple bg doesn't obscure text -->
+            <div class="hero-overlay"></div>
+
+            <!-- Text Block: centered, no overlap -->
+            <div class="hero-content">
+                <!-- SVG Pen Drawing Animation -->
+                <div class="logo-vector-container" id="logo-vector">
+                    <svg id="illustrator-svg" viewBox="0 0 500 100" style="width:100%; max-width:600px; height:auto; overflow:visible;"></svg>
+                    <div id="pen-tool" class="pen-tool-icon" style="opacity:0;">
+                        <i data-lucide="pen-tool" size="36"></i>
+                    </div>
+                </div>
+
+                <!-- Main Logo (hidden until pen animation ends) -->
+                <div id="hero-title" style="visibility:hidden; margin:2rem 0 0.5rem;">
+                    <img src="img/logo.png" alt="Creativo Digital"
+                         style="height:clamp(60px,10vw,120px); object-fit:contain;"
+                         onerror="this.outerHTML='<h1 style=\'font-size:var(--text-display);font-weight:800;line-height:1.1;\'>CREATIVO <span style=\'color:var(--accent-cyan);\'>DIGITAL</span></h1>'">
+                </div>
+
+                <!-- Tagline -->
+                <p class="hero-tagline">
+                    &ldquo;Examinadlo todo; retened lo bueno.&rdquo;
+                    <span style="color:var(--accent-cyan); display:block; margin-top:0.25rem;">1 Tesalonicenses 5:21</span>
+                </p>
+            </div>
+
+            <!-- 3D Carousel: separate block below text -->
+            <div class="hero-carousel-block">
+                <div class="carousel-3d-wrapper">
+                    <div class="carousel-3d-container" id="main-carousel">
+                        <div class="carousel-item item-left"><img src="https://picsum.photos/seed/arc1/800/600" alt="Work 1"></div>
+                        <div class="carousel-item item-center"><img src="https://picsum.photos/seed/arc2/800/600" alt="Work 2"></div>
+                        <div class="carousel-item item-right"><img src="https://picsum.photos/seed/arc3/800/600" alt="Work 3"></div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Marquee de ancho completo fuera del content -->
+            <!-- Marquee: anchored to bottom -->
             <div class="marquee-wrapper">
                 <div class="marquee-content">
-                    <span>Innovación Espacial & Diseño Minimalista</span><span class="dot">•</span>
-                    <span>Creatividad sin límites</span><span class="dot">•</span>
-                    <span>Arquitectura del futuro</span><span class="dot">•</span>
-                    <span>Innovación Espacial & Diseño Minimalista</span><span class="dot">•</span>
-                    <span>Creatividad sin límites</span><span class="dot">•</span>
-                    <span>Arquitectura del futuro</span><span class="dot">•</span>
+                    <span>Innovación Espacial &amp; Diseño Minimalista</span><span class="dot">&nbsp;&bull;&nbsp;</span>
+                    <span>Creatividad sin límites</span><span class="dot">&nbsp;&bull;&nbsp;</span>
+                    <span>Arquitectura del futuro</span><span class="dot">&nbsp;&bull;&nbsp;</span>
+                    <span>Innovación Espacial &amp; Diseño Minimalista</span><span class="dot">&nbsp;&bull;&nbsp;</span>
+                    <span>Creatividad sin límites</span><span class="dot">&nbsp;&bull;&nbsp;</span>
+                    <span>Arquitectura del futuro</span><span class="dot">&nbsp;&bull;&nbsp;</span>
                 </div>
             </div>
         </section>
@@ -92,22 +129,28 @@
             </div>
 
             <div class="services-grid">
-
-                
-                <div class="service-card glass interactable">
+                <div class="service-card glass interactable" data-gallery="branding" onclick="if(typeof openGallery === 'function') openGallery('branding')">
                     <div class="service-icon">
                         <i data-lucide="pen-tool" width="32" height="32"></i>
                     </div>
                     <h3>Diseño Gráfico</h3>
-                    <p>Identidad visual, branding, interfaces de usuario (UI) y experiencia de usuario (UX) centrada en conversiones.</p>
+                    <p>Identidad visual, branding, interfaces de usuario (UI) y experiencia de usuario (UX).</p>
                 </div>
 
-                <div class="service-card glass interactable">
+                <div class="service-card glass interactable" data-gallery="renders" onclick="if(typeof openGallery === 'function') openGallery('renders')">
                     <div class="service-icon">
                         <i data-lucide="box" width="32" height="32"></i>
                     </div>
                     <h3>Renderizado 3D</h3>
-                    <p>Visualización arquitectónica inmersiva hiperrealista para anticipar el resultado antes de la construcción.</p>
+                    <p>Visualización arquitectónica inmersiva hiperrealista para proyectos de alto nivel.</p>
+                </div>
+
+                <div class="service-card glass interactable" data-gallery="videos" onclick="if(typeof openGallery === 'function') openGallery('videos')">
+                    <div class="service-icon">
+                        <i data-lucide="video" width="32" height="32"></i>
+                    </div>
+                    <h3>Área de Video</h3>
+                    <p>Producción audiovisual, recorridos virtuales y contenido cinematográfico.</p>
                 </div>
             </div>
         </section>
@@ -116,7 +159,7 @@
         <section id="contact">
             <div class="contact-layout">
                 <!-- Carrusel Mock -->
-                <div class="testimonial-carousel glass">
+                <div class="testimonial-carousel glass" style="padding: 2.5rem; border-radius: var(--radius-card);">
                     <i data-lucide="quote" width="48" height="48" style="color:var(--accent-cyan); margin-bottom:1rem; opacity:0.5;"></i>
                     <p class="testimonial-quote">"Fusionamos la estética del diseño moderno con la precisión arquitectónica para crear experiencias visuales y espacios inmersivos incomparables."</p>
                     <div class="testimonial-author">
@@ -176,7 +219,7 @@
 
     <!-- Lightbox Dinámico -->
     <div id="lightbox" class="lightbox">
-        <span class="lightbox-close interactable" onclick="closeLightbox()"><i data-lucide="x"></i></span>
+        <span class="lightbox-close interactable" onclick="if(typeof closeLightbox === 'function') closeLightbox()"><i data-lucide="x"></i></span>
         <div class="lightbox-content" id="lightbox-content">
             <!-- Se inyecta media aquí -->
         </div>
@@ -184,7 +227,7 @@
 
     <!-- Modal Buscador -->
     <div id="search-modal" class="lightbox">
-        <span class="lightbox-close interactable" onclick="closeSearch()"><i data-lucide="x"></i></span>
+        <span class="lightbox-close interactable" onclick="if(typeof closeSearch === 'function') closeSearch()"><i data-lucide="x"></i></span>
         <div style="width: 90%; max-width: 600px; padding: 2rem; background: var(--glass-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: var(--radius-card); display: flex; flex-direction: column; gap: 1.5rem; position: relative;">
             <div style="display:flex; align-items:center; background: rgba(0,0,0,0.5); border: 1px solid var(--accent-cyan); border-radius: var(--radius-btn); padding: 0.5rem 1rem;">
                 <i data-lucide="search" style="color: var(--accent-cyan);"></i>
@@ -193,6 +236,19 @@
             <div id="search-results" style="max-height: 50vh; overflow-y: auto; display:flex; flex-direction: column; gap: 0.5rem;"></div>
         </div>
     </div>
+
+    <div id="gallery-overlay" class="gallery-overlay">
+        <div class="gallery-header">
+            <h2 id="gallery-title" class="section-title" style="margin-bottom:0;">CATEGORÍA</h2>
+            <button onclick="window.closeGallery()" class="btn btn-secondary" style="padding:0.5rem 1.5rem; cursor:pointer;">
+                <i data-lucide="arrow-left"></i> VOLVER
+            </button>
+        </div>
+        <div id="gallery-grid" class="sub-gallery-grid"></div>
+    </div>
+
+    <!-- Background Image Support for Ripples -->
+    <div id="hero-img-src" data-src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070" style="display: none;"></div>
 
     <!-- =========================================================================
          11. JAVASCRIPT LOGIC
