@@ -2,29 +2,29 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CREATIVO DIGITAL - Estudio Multidisciplinar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CREATIVO DIGITAL - by Daibel El Creativo</title>
+  <meta name="description" content="Estudio creativo multidisciplinar: arquitectura, diseño, video y música.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23030712'/%3E%3Ccircle cx='50' cy='50' r='42' fill='none' stroke='%2300f0ff' stroke-width='2' opacity='0.6'/%3E%3Ctext x='50' y='42' font-family='Orbitron,Arial' font-size='28' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EC%3C/text%3E%3Ctext x='50' y='74' font-family='Orbitron,Arial' font-size='28' font-weight='900' fill='%2300f0ff' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="./css/styles.css">
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-            orbitron: ["Orbitron", "sans-serif"],
-            mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
+            sans: ["Inter","sans-serif"],
+            orbitron: ["Orbitron","sans-serif"],
+            mono: ["JetBrains Mono","monospace"],
           },
           colors: {
             'cyber-cyan': '#00f0ff',
             'cyber-blue': '#0072ff',
             'cyber-dark': '#030712',
-            'cyber-gray': '#0b1329',
           }
         }
       }
@@ -32,717 +32,300 @@
   </script>
 </head>
 <body class="bg-cyber-dark text-white min-h-screen">
-
-  <!-- Glitch Layer -->
+  <div class="custom-cursor" id="js-cursor"></div>
   <div class="glitch-layer" id="glitch-layer"></div>
+  <div class="fixed top-[-10%] left-[30%] w-[400px] h-[400px] rounded-full bg-cyber-blue/5 blur-[120px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-[-10%] right-[10%] w-[300px] h-[300px] rounded-full bg-cyber-cyan/5 blur-[100px] pointer-events-none z-0"></div>
 
-  <!-- Background Blobs -->
-  <div class="fixed top-[-10%] left-[30%] w-[500px] h-[500px] rounded-full bg-cyber-blue/5 blur-[120px] pointer-events-none z-0"></div>
-  <div class="fixed bottom-[-10%] right-[10%] w-[400px] h-[400px] rounded-full bg-cyber-cyan/5 blur-[100px] pointer-events-none z-0"></div>
-
-  <!-- ===================== HEADER ===================== -->
-  <header class="relative w-full max-w-7xl mx-auto z-30 flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-white/5 pb-4 pt-4 px-2 sm:px-6 md:px-8">
-    <!-- Logo -->
-    <div onclick="navigateTo('INICIO')" class="flex flex-col items-center sm:items-start text-center sm:text-left cursor-pointer group select-none">
-      <span class="font-orbitron text-xl font-black tracking-[0.25em] text-white leading-none group-hover:text-cyber-cyan transition-colors">CREATIVO</span>
-      <span class="font-orbitron text-sm font-semibold tracking-[0.35em] text-cyber-cyan leading-none mt-1 neon-text-cyan">DIGITAL</span>
+  <header class="relative w-full max-w-7xl mx-auto z-30 flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-white/5 pb-3 pt-3 px-3 sm:px-6 md:px-8">
+    <div onclick="navigateTo('INICIO')" id="logo-brand-btn" class="flex flex-col items-center sm:items-start text-center sm:text-left cursor-pointer group select-none shrink-0">
+      <span class="font-orbitron text-lg sm:text-xl font-black tracking-[0.2em] text-white leading-none group-hover:text-cyber-cyan transition-colors">CREATIVO</span>
+      <span class="font-orbitron text-xs sm:text-sm font-semibold tracking-[0.3em] text-cyber-cyan leading-none mt-1 neon-text-cyan">DIGITAL</span>
     </div>
-
-    <!-- Header Controls -->
-    <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto z-40">
-      <!-- Menu Button -->
-      <button onclick="toggleMobileMenu()" class="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded bg-white/[0.01] hover:bg-cyber-cyan hover:text-black border border-white/5 hover:border-transparent text-gray-400 font-orbitron text-[10px] font-bold tracking-widest uppercase transition-all duration-300 cursor-pointer shadow">
-        <i data-lucide="menu" class="w-4 h-4 shrink-0"></i>
-        <span>MENÚ</span>
+    <div class="flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto">
+      <button onclick="toggleMobileMenu()" class="flex items-center justify-center gap-1.5 px-3 py-2 rounded bg-white/[0.01] hover:bg-cyber-cyan hover:text-black border border-white/5 hover:border-transparent text-gray-400 hover:text-black font-orbitron text-[9px] sm:text-[10px] font-bold tracking-widest uppercase transition-all cursor-pointer">
+        <i data-lucide="menu" class="w-3.5 h-3.5 shrink-0"></i><span>MENÚ</span>
       </button>
-
-      <!-- Search -->
-      <div class="relative w-full sm:w-48 md:w-60" id="search-container">
-        <div class="absolute left-3 top-2.5 flex items-center justify-center text-gray-500">
-          <i data-lucide="search" class="w-4 h-4"></i>
-        </div>
-        <input id="search-input" type="text" placeholder="Buscar proyectos..." class="w-full bg-black/60 border border-white/10 hover:border-cyber-cyan/30 focus:border-cyber-cyan/80 text-xs px-10 py-2.5 rounded-lg text-white font-mono placeholder-gray-500 outline-none transition-all duration-300 shadow-inner" />
+      <div class="relative flex-grow min-w-[140px] max-w-[200px] sm:max-w-[240px]" id="search-container">
+        <div class="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-500"><i data-lucide="search" class="w-3.5 h-3.5"></i></div>
+        <input id="search-input" type="text" placeholder="Buscar..." class="w-full bg-black/60 border border-white/10 hover:border-cyber-cyan/30 focus:border-cyber-cyan/80 text-[11px] px-9 py-2 rounded-lg text-white font-mono outline-none transition-all" />
       </div>
-
-      <!-- Social Icons (right side of search) -->
-      <div class="flex items-center gap-2">
-        <a href="https://youtube.com" target="_blank" class="social-icon-link youtube" title="YouTube">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </a>
-        <a href="https://instagram.com" target="_blank" class="social-icon-link instagram" title="Instagram">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-        </a>
-        <a href="https://wa.me/" target="_blank" class="social-icon-link whatsapp" title="WhatsApp">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
+      <div class="flex items-center gap-1.5">
+        <a href="https://www.youtube.com/@daibelelcreativo" target="_blank" class="social-icon-link youtube" title="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.instagram.com/daibelelcreativo?igsh=NjlsNnR4MnlsZ3Bq" target="_blank" class="social-icon-link instagram" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg></a>
+        <a href="https://wa.me/18297527990" target="_blank" class="social-icon-link whatsapp" title="WhatsApp +1 (829) 752-7990"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Menu Dropdown -->
-  <div id="mobile-menu" class="hidden absolute top-20 left-1/2 -translate-x-1/2 sm:left-auto sm:right-8 w-52 bg-cyber-dark border border-cyber-cyan/30 p-2 rounded shadow-2xl z-50 flex flex-col gap-1 text-left neon-border-cyan fade-in">
-    <div class="px-3 py-1 font-mono text-[7px] text-gray-500 uppercase tracking-widest border-b border-white/5 mb-1 flex items-center justify-between">
-      <span>ATRIBUTO SUBMENÚ</span>
-      <i data-lucide="corner-down-right" class="w-2.5 h-2.5 text-cyber-cyan"></i>
-    </div>
-    <button onclick="navigateTo('INICIO')" class="w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider transition-all cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white mobile-menu-item">INICIO</button>
-    <button onclick="navigateTo('EXPLORAR')" class="w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider transition-all cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white mobile-menu-item">EXPLORAR</button>
-    <button onclick="navigateTo('SERVICIOS')" class="w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider transition-all cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white mobile-menu-item">SERVICIOS</button>
-    <button onclick="navigateTo('ARQUITECTURA')" class="w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider transition-all cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white mobile-menu-item">ARQUITECTURA</button>
-    <button onclick="navigateTo('DISEÑO GRÁFICO')" class="w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider transition-all cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white mobile-menu-item">DISEÑO GRÁFICO</button>
-    <button onclick="navigateTo('VIDEO')" class="w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider transition-all cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white mobile-menu-item">VIDEO</button>
-    <button onclick="navigateTo('MÚSICA')" class="w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider transition-all cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white mobile-menu-item">MÚSICA</button>
-    <button onclick="navigateTo('OTROS')" class="w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider transition-all cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white mobile-menu-item">OTROS</button>
+  <div id="mobile-menu" class="hidden absolute top-16 left-3 right-3 sm:left-auto sm:right-8 sm:w-52 bg-cyber-dark border border-cyber-cyan/30 p-2 rounded shadow-2xl z-60 flex flex-col gap-1 text-left neon-border-cyan fade-in">
+    <div class="px-3 py-1 font-mono text-[7px] text-gray-500 uppercase tracking-widest border-b border-white/5 mb-1">SECCIONES</div>
+    <button data-section="INICIO" onclick="navigateTo('INICIO')" class="mobile-menu-item w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider cursor-pointer text-gray-400 hover:bg-cyber-cyan/10 hover:text-cyber-cyan transition-all">INICIO</button>
+    <button data-section="EXPLORAR" onclick="navigateTo('EXPLORAR')" class="mobile-menu-item w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider cursor-pointer text-gray-400 hover:bg-cyber-cyan/10 hover:text-cyber-cyan transition-all">EXPLORAR</button>
+    <button data-section="SERVICIOS" onclick="navigateTo('SERVICIOS')" class="mobile-menu-item w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider cursor-pointer text-gray-400 hover:bg-cyber-cyan/10 hover:text-cyber-cyan transition-all">SERVICIOS</button>
+    <button data-section="ARQUITECTURA" onclick="navigateTo('ARQUITECTURA')" class="mobile-menu-item w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider cursor-pointer text-gray-400 hover:bg-cyber-cyan/10 hover:text-cyber-cyan transition-all">ARQUITECTURA</button>
+    <button data-section="DISEÑO GRÁFICO" onclick="navigateTo('DISEÑO GRÁFICO')" class="mobile-menu-item w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider cursor-pointer text-gray-400 hover:bg-cyber-cyan/10 hover:text-cyber-cyan transition-all">DISEÑO GRÁFICO</button>
+    <button data-section="VIDEO" onclick="navigateTo('VIDEO')" class="mobile-menu-item w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider cursor-pointer text-gray-400 hover:bg-cyber-cyan/10 hover:text-cyber-cyan transition-all">VIDEO</button>
+    <button data-section="MÚSICA" onclick="navigateTo('MÚSICA')" class="mobile-menu-item w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider cursor-pointer text-gray-400 hover:bg-cyber-cyan/10 hover:text-cyber-cyan transition-all">MÚSICA</button>
+    <button data-section="OTROS" onclick="navigateTo('OTROS')" class="mobile-menu-item w-full py-1.5 px-3 rounded text-left font-orbitron text-[10px] font-semibold tracking-wider cursor-pointer text-gray-400 hover:bg-cyber-cyan/10 hover:text-cyber-cyan transition-all">OTROS</button>
   </div>
 
-  <!-- Search Results Dropdown -->
-  <div id="search-results" class="hidden absolute top-28 left-1/2 -translate-x-1/2 sm:left-auto sm:right-8 w-80 bg-cyber-dark border border-cyber-cyan/30 rounded-lg shadow-2xl z-50 max-h-60 overflow-y-auto divide-y divide-white/5 backdrop-blur-md neon-border-cyan fade-in" style="width: min(24rem, 90vw);"></div>
+  <div id="search-results" class="hidden absolute top-16 left-3 right-3 sm:left-auto sm:right-8 sm:w-80 bg-cyber-dark border border-cyber-cyan/30 rounded-lg shadow-2xl z-60 max-h-60 overflow-y-auto divide-y divide-white/5 neon-border-cyan fade-in"></div>
 
-  <!-- ===================== MAIN WORKSPACE ===================== -->
-  <main class="w-full max-w-7xl mx-auto flex-grow grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch py-6 z-10 relative px-2 sm:px-6 md:px-8">
+  <main class="relative w-full max-w-7xl mx-auto flex-grow grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch py-4 z-10 px-3 sm:px-6 md:px-8">
 
-    <!-- LEFT RADAR MENU (Desktop) -->
     <div class="hidden lg:flex lg:col-span-3 h-full items-center justify-start border-r border-white/5 pr-4">
-      <div class="relative w-[280px] h-full flex flex-col items-center justify-center select-none">
-        <!-- Decorative circles -->
-        <div class="absolute left-[-200px] w-[450px] h-[450px] rounded-full border border-cyber-cyan/10 pointer-events-none flex items-center justify-center">
-          <div class="w-[380px] h-[380px] rounded-full border border-cyber-cyan/5 flex items-center justify-center">
-            <div class="w-[300px] h-[300px] rounded-full border border-dashed border-cyber-cyan/10"></div>
+      <div class="relative w-[260px] h-full flex flex-col items-center justify-center select-none">
+        <div class="absolute left-[-180px] w-[420px] h-[420px] rounded-full border border-cyber-cyan/10 pointer-events-none flex items-center justify-center">
+          <div class="w-[350px] h-[350px] rounded-full border border-cyber-cyan/5 flex items-center justify-center">
+            <div class="w-[280px] h-[280px] rounded-full border border-dashed border-cyber-cyan/10"></div>
           </div>
         </div>
-
-        <!-- SVG Arc -->
-        <svg class="absolute left-[-150px] w-[350px] h-[550px] pointer-events-none overflow-visible" viewBox="0 0 350 550">
-          <path d="M 50 50 A 250 250 0 0 1 50 500" fill="none" stroke="url(#arcGlow)" strokeWidth="2" className="hud-radar-line opacity-40" />
-          <defs>
-            <linearGradient id="arcGlow" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#0072ff" stopOpacity="0" />
-              <stop offset="50%" stopColor="#00f0ff" stopOpacity="1" />
-              <stop offset="100%" stopColor="#0072ff" stopOpacity="0" />
-            </linearGradient>
-          </defs>
+        <svg class="absolute left-[-140px] w-[320px] h-[500px] pointer-events-none overflow-visible" viewBox="0 0 320 500">
+          <path d="M 50 50 A 230 230 0 0 1 50 450" fill="none" stroke="url(#arcGlow)" strokeWidth="2" className="hud-radar-line opacity-40" />
+          <defs><linearGradient id="arcGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#0072ff" stopOpacity="0"/><stop offset="50%" stopColor="#00f0ff" stopOpacity="1"/><stop offset="100%" stopColor="#0072ff" stopOpacity="0"/></linearGradient></defs>
         </svg>
-
-        <!-- Active indicator -->
-        <div class="absolute left-4 w-16 h-16 flex items-center justify-center z-20 transition-all duration-300" id="radar-indicator" style="transform: translateY(-44px);">
-          <div class="relative w-12 h-12 rounded-full bg-cyber-dark/80 border border-cyber-cyan/40 flex items-center justify-center neon-border-cyan">
-            <i data-lucide="chevron-right" class="w-5 h-5 text-cyber-cyan"></i>
-          </div>
+        <div class="absolute left-4 w-16 h-16 flex items-center justify-center z-20" id="radar-indicator" style="transform: translateY(0px); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);">
+          <div class="relative w-11 h-11 rounded-full bg-cyber-dark/80 border border-cyber-cyan/40 flex items-center justify-center neon-border-cyan"><i data-lucide="chevron-right" class="w-4 h-4 text-cyber-cyan"></i></div>
         </div>
-
-        <!-- Menu Items -->
-        <div class="flex flex-col gap-5 pl-20 z-10 w-full justify-center" id="radar-menu-list">
-          <!-- Items injected by JS -->
-
-          <button data-section="INICIO" onclick="navigateTo('INICIO')" onmouseenter="radarHover()" class="radar-menu-item group flex items-center justify-start py-1 focus:outline-none text-left transition-all duration-300 relative cursor-pointer bg-cyber-cyan/5 border-l-2 border-cyber-cyan rounded-r">
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-[10px] tracking-wider text-cyber-cyan">01</span>
-              <span class="menu-label font-orbitron text-xs font-semibold tracking-widest text-cyber-cyan neon-text-cyan">INICIO</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-cyber-cyan"></span>
-            </div>
-          </button>
-
-          <button data-section="EXPLORAR" onclick="navigateTo('EXPLORAR')" onmouseenter="radarHover()" class="radar-menu-item group flex items-center justify-start py-1 focus:outline-none text-left transition-all duration-300 relative cursor-pointer" style="transform: translateX(3px);">
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-[10px] tracking-wider text-gray-600 group-hover:text-cyber-cyan/70">02</span>
-              <span class="menu-label font-orbitron text-xs font-semibold tracking-widest text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all">EXPLORAR</span>
-            </div>
-          </button>
-
-          <button data-section="SERVICIOS" onclick="navigateTo('SERVICIOS')" onmouseenter="radarHover()" class="radar-menu-item group flex items-center justify-start py-1 focus:outline-none text-left transition-all duration-300 relative cursor-pointer" style="transform: translateX(6px);">
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-[10px] tracking-wider text-gray-600 group-hover:text-cyber-cyan/70">03</span>
-              <span class="menu-label font-orbitron text-xs font-semibold tracking-widest text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all">SERVICIOS</span>
-            </div>
-          </button>
-
-          <button data-section="ARQUITECTURA" onclick="navigateTo('ARQUITECTURA')" onmouseenter="radarHover()" class="radar-menu-item group flex items-center justify-start py-1 focus:outline-none text-left transition-all duration-300 relative cursor-pointer" style="transform: translateX(8px);">
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-[10px] tracking-wider text-gray-600 group-hover:text-cyber-cyan/70">04</span>
-              <span class="menu-label font-orbitron text-xs font-semibold tracking-widest text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all">ARQUITECTURA</span>
-            </div>
-          </button>
-
-          <button data-section="DISEÑO GRÁFICO" onclick="navigateTo('DISEÑO GRÁFICO')" onmouseenter="radarHover()" class="radar-menu-item group flex items-center justify-start py-1 focus:outline-none text-left transition-all duration-300 relative cursor-pointer" style="transform: translateX(10px);">
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-[10px] tracking-wider text-gray-600 group-hover:text-cyber-cyan/70">05</span>
-              <span class="menu-label font-orbitron text-xs font-semibold tracking-widest text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all">DISEÑO GRÁFICO</span>
-            </div>
-          </button>
-
-          <button data-section="VIDEO" onclick="navigateTo('VIDEO')" onmouseenter="radarHover()" class="radar-menu-item group flex items-center justify-start py-1 focus:outline-none text-left transition-all duration-300 relative cursor-pointer" style="transform: translateX(11px);">
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-[10px] tracking-wider text-gray-600 group-hover:text-cyber-cyan/70">06</span>
-              <span class="menu-label font-orbitron text-xs font-semibold tracking-widest text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all">VIDEO</span>
-            </div>
-          </button>
-
-          <button data-section="MÚSICA" onclick="navigateTo('MÚSICA')" onmouseenter="radarHover()" class="radar-menu-item group flex items-center justify-start py-1 focus:outline-none text-left transition-all duration-300 relative cursor-pointer" style="transform: translateX(10px);">
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-[10px] tracking-wider text-gray-600 group-hover:text-cyber-cyan/70">07</span>
-              <span class="menu-label font-orbitron text-xs font-semibold tracking-widest text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all">MÚSICA</span>
-            </div>
-          </button>
-
-          <button data-section="OTROS" onclick="navigateTo('OTROS')" onmouseenter="radarHover()" class="radar-menu-item group flex items-center justify-start py-1 focus:outline-none text-left transition-all duration-300 relative cursor-pointer" style="transform: translateX(8px);">
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-[10px] tracking-wider text-gray-600 group-hover:text-cyber-cyan/70">08</span>
-              <span class="menu-label font-orbitron text-xs font-semibold tracking-widest text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all">OTROS</span>
-            </div>
-          </button>
-        </div>
-
-        <!-- Status -->
-        <div class="absolute bottom-4 left-6 flex items-center gap-2 text-[10px] font-mono text-gray-500">
-          <i data-lucide="radio" class="w-3 h-3 text-cyber-cyan/70 animate-pulse"></i>
-          <span>SYS.STATUS: ONLINE</span>
-        </div>
+        <div class="flex flex-col gap-4 pl-16 z-10 w-full justify-center" id="radar-menu-list"></div>
+        <div class="absolute bottom-4 left-6 flex items-center gap-2 text-[10px] font-mono text-gray-500"><i data-lucide="radio" class="w-3 h-3 text-cyber-cyan/70 animate-pulse"></i><span>ONLINE</span></div>
       </div>
     </div>
 
-    <!-- ===================== CONTENT AREA ===================== -->
-    <div class="col-span-1 lg:col-span-9 flex flex-col justify-between pl-0 lg:pl-6 min-h-[480px]">
+    <div class="col-span-1 lg:col-span-9 flex flex-col justify-between min-h-[480px]">
 
-      <!-- ========== SECTION: INICIO ========== -->
-      <div class="content-section w-full h-full flex flex-col justify-between fade-in" id="section-INICIO">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4 flex-grow">
+      <!-- INICIO -->
+      <div class="content-section w-full flex flex-col gap-6 fade-in" id="section-INICIO">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div class="lg:col-span-7 flex flex-col justify-center text-left">
-            <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 bg-cyber-cyan/10 border border-cyber-cyan/20 rounded-full w-fit">
-              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-cyber-cyan animate-pulse"></i>
-              <span class="font-mono text-[9px] tracking-widest text-cyber-cyan font-semibold">ESTUDIO MULTIDISCIPLINAR DE ARQUITECTURA & DISEÑO</span>
+            <div class="inline-flex items-center gap-2 mb-3 px-3 py-1 bg-cyber-cyan/10 border border-cyber-cyan/20 rounded-full w-fit">
+              <span class="font-mono text-[8px] tracking-widest text-cyber-cyan font-semibold">CREAMOS E INSPIRAMOS</span>
             </div>
-            <h1 class="font-orbitron text-5xl sm:text-6xl font-black tracking-[0.15em] text-white leading-none mb-2">CREATIVO</h1>
-            <h1 class="font-orbitron text-[3.25rem] sm:text-7xl font-black tracking-[0.15em] text-cyber-cyan leading-none mb-6 neon-text-cyan">DIGITAL</h1>
-            <p class="text-gray-400 font-sans text-sm tracking-wider leading-relaxed mb-8 max-w-xl">FUSIÓN DE TÉCNICA, ARQUITECTURA Y DISEÑO PARA CREAR SOLUCIONES VISUALES Y ESPACIALES FUNCIONALES Y MEMORABLES.</p>
-
-            <!-- Bible verse -->
-            <div class="p-5 border border-white/5 bg-white/[0.02] rounded-lg backdrop-blur-sm shadow-xl max-w-lg mb-4 flex items-start gap-4">
+            <h1 class="font-orbitron text-4xl sm:text-5xl md:text-6xl font-black tracking-[0.12em] text-white leading-none mb-2">CREATIVO</h1>
+            <h1 class="font-orbitron text-3xl sm:text-5xl md:text-7xl font-black tracking-[0.12em] text-cyber-cyan leading-none mb-5 neon-text-cyan">DIGITAL</h1>
+            <p class="text-gray-400 font-sans text-xs sm:text-sm tracking-wider leading-relaxed mb-5 max-w-xl">FUSIÓN DE TÉCNICA, ARQUITECTURA Y DISEÑO PARA CREAR SOLUCIONES VISUALES Y ESPACIALES FUNCIONALES Y MEMORABLES.</p>
+            <div class="p-4 border border-white/5 bg-white/[0.02] rounded-lg backdrop-blur-sm shadow-xl max-w-lg flex items-start gap-3">
               <div class="bible-icon shrink-0">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-cyber-cyan">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                  <path d="M8 7h8M8 11h6"/>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-cyber-cyan">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h6"/>
                 </svg>
               </div>
               <div>
-                <p class="font-orbitron text-xs font-semibold tracking-widest text-cyber-cyan mb-2">"EXAMINADLO TODO; RETENED LO BUENO."</p>
-                <p class="font-mono text-[10px] text-gray-500 tracking-wider">1 TESALONICENSES 5:21</p>
+                <p class="font-orbitron text-[11px] sm:text-xs font-semibold tracking-widest text-cyber-cyan mb-1">"EXAMINADLO TODO; RETENED LO BUENO."</p>
+                <p class="font-mono text-[9px] text-gray-500 tracking-wider">1 TESALONICENSES 5:21</p>
               </div>
             </div>
           </div>
-
           <div class="lg:col-span-5 flex justify-center items-center relative">
-            <div class="absolute w-[360px] h-[360px] rounded-full border border-cyber-cyan/15 animate-[spin_40s_linear_infinite]"></div>
-            <div class="absolute w-[320px] h-[320px] rounded-full border border-dashed border-cyber-blue/25 animate-[spin_20s_linear_infinite_reverse]"></div>
-            <div class="absolute bottom-[20px] w-56 h-4 bg-cyber-cyan/20 blur-md rounded-full"></div>
-            <div class="relative w-64 h-64 z-10 flex items-center justify-center p-3 rounded-full border-2 border-cyber-cyan/30 neon-border-cyan overflow-hidden backdrop-blur-sm bg-cyber-dark/40 shadow-2xl animate-[bounce_6s_infinite_ease-in-out]" onclick="openFullscreenImage('./img/cyber_sculpture_1781381865496.jpg')">
-              <img src="./img/cyber_sculpture_1781381865496.jpg" alt="Sculpture" class="w-full h-full object-cover rounded-full filter brightness-110 saturate-125 cursor-pointer" />
-              <div class="absolute left-0 right-0 h-0.5 bg-cyber-cyan/40 shadow-[0_0_10px_#00f0ff] top-0 animate-[bounce_5s_infinite_ease-in-out] pointer-events-none"></div>
+            <div class="absolute w-[280px] h-[280px] rounded-full border border-cyber-cyan/15 animate-[spin_40s_linear_infinite]"></div>
+            <div class="absolute w-[240px] h-[240px] rounded-full border border-dashed border-cyber-blue/25 animate-[spin_20s_linear_infinite_reverse]"></div>
+            <div class="relative w-48 h-48 sm:w-56 sm:h-56 z-10 flex items-center justify-center p-2 rounded-full border-2 border-cyber-cyan/30 neon-border-cyan overflow-hidden backdrop-blur-sm bg-cyber-dark/40 shadow-2xl animate-logo-bounce cursor-pointer" onclick="openFullscreenImage('./img/cyber_sculpture_1781381865496.jpg')">
+              <img src="./img/cyber_sculpture_1781381865496.jpg" alt="Sculpture" class="w-full h-full object-cover rounded-full filter brightness-110 saturate-125" loading="lazy" />
             </div>
-            <div class="absolute top-10 right-4 font-mono text-[9px] text-cyber-cyan bg-cyber-dark/80 px-2 py-1 rounded border border-cyber-cyan/20 z-20">STRUX.MODEL // v2.4</div>
-            <div class="absolute bottom-16 left-4 font-mono text-[9px] text-cyber-blue bg-cyber-dark/80 px-2 py-1 rounded border border-cyber-blue/20 z-20">RENDER.ENGINE: OK</div>
+            <div class="absolute top-4 right-2 font-mono text-[8px] text-cyber-cyan bg-cyber-dark/80 px-1.5 py-0.5 rounded border border-cyber-cyan/20 z-20">MODEL v2.4</div>
           </div>
         </div>
 
-        <!-- Carousel: Proyectos Destacados -->
-        <div class="pt-8 border-t border-white/5 mt-6">
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-3">
-              <span class="w-2.5 h-2.5 rounded-full bg-cyber-cyan animate-pulse animate-ping"></span>
-              <h3 class="font-orbitron text-xs font-bold tracking-[0.25em] text-white">PROYECTOS DESTACADOS</h3>
+        <div class="pt-4 border-t border-white/5">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-ping"></span>
+              <h3 class="font-orbitron text-[11px] sm:text-xs font-bold tracking-[0.2em] text-white">PROYECTOS DESTACADOS</h3>
             </div>
-            <button onclick="navigateTo('EXPLORAR')" class="flex items-center gap-1.5 font-mono text-[10px] text-cyber-cyan hover:text-white transition-colors duration-300 group cursor-pointer">
-              <span>VER TODO</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
-            </button>
+            <button onclick="navigateTo('EXPLORAR')" class="flex items-center gap-1 font-mono text-[9px] text-cyber-cyan hover:text-white cursor-pointer"><span>VER TODO</span><i data-lucide="arrow-right" class="w-3 h-3"></i></button>
           </div>
           <div class="carousel-container">
             <div class="carousel-track" id="carousel-track"></div>
-            <div class="flex items-center justify-center gap-3 mt-4">
-              <button onclick="prevSlide()" class="w-8 h-8 rounded border border-white/10 hover:border-cyber-cyan/40 flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all cursor-pointer">
-                <i data-lucide="chevron-left" class="w-4 h-4"></i>
-              </button>
+            <div class="flex items-center justify-center gap-2 mt-3">
+              <button onclick="prevSlide()" class="w-7 h-7 rounded border border-white/10 hover:border-cyber-cyan/40 flex items-center justify-center text-gray-400 hover:text-cyber-cyan cursor-pointer"><i data-lucide="chevron-left" class="w-3.5 h-3.5"></i></button>
               <div class="flex items-center gap-2" id="carousel-dots"></div>
-              <button onclick="nextSlide()" class="w-8 h-8 rounded border border-white/10 hover:border-cyber-cyan/40 flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all cursor-pointer">
-                <i data-lucide="chevron-right" class="w-4 h-4"></i>
-              </button>
+              <button onclick="nextSlide()" class="w-7 h-7 rounded border border-white/10 hover:border-cyber-cyan/40 flex items-center justify-center text-gray-400 hover:text-cyber-cyan cursor-pointer"><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ========== SECTION: EXPLORAR (PORTAFOLIO) ========== -->
-      <div class="content-section w-full h-full flex flex-col lg:flex-row gap-6 fade-in" id="section-EXPLORAR" style="display:none;">
-        <div class="flex-grow flex flex-col justify-between">
-          <div>
-            <div class="mb-4 text-left">
-              <h2 class="font-orbitron text-2xl font-black tracking-widest text-white mb-2">EXPLORAR</h2>
-              <p class="text-gray-400 text-xs font-sans max-w-xl tracking-wider leading-relaxed">Explore una selección de proyectos que reflejan nuestra pasión por el diseño y la innovación.</p>
-            </div>
-
-            <!-- Category Filters -->
-            <div class="flex flex-wrap gap-2 py-3 border-y border-white/5 mb-6">
-              <button onclick="filterPortfolio('TODOS')" class="px-3 py-1.5 font-mono text-[10px] tracking-widest transition-all duration-300 border rounded cursor-pointer bg-cyber-cyan/10 border-cyber-cyan text-cyber-cyan neon-text-cyan" id="filter-TODOS">TODOS</button>
-              <button onclick="filterPortfolio('ARQUITECTURA')" class="px-3 py-1.5 font-mono text-[10px] tracking-widest transition-all duration-300 border rounded cursor-pointer border-white/5 bg-cyber-dark text-gray-400 hover:text-white hover:border-white/20" id="filter-ARQUITECTURA">ARQUITECTURA</button>
-              <button onclick="filterPortfolio('DISEÑO 3D')" class="px-3 py-1.5 font-mono text-[10px] tracking-widest transition-all duration-300 border rounded cursor-pointer border-white/5 bg-cyber-dark text-gray-400 hover:text-white hover:border-white/20" id="filter-DISEÑO 3D">DISEÑO 3D</button>
-              <button onclick="filterPortfolio('DISEÑO GRÁFICO')" class="px-3 py-1.5 font-mono text-[10px] tracking-widest transition-all duration-300 border rounded cursor-pointer border-white/5 bg-cyber-dark text-gray-400 hover:text-white hover:border-white/20" id="filter-DISEÑO GRÁFICO">DISEÑO GRÁFICO</button>
-              <button onclick="filterPortfolio('VIDEO')" class="px-3 py-1.5 font-mono text-[10px] tracking-widest transition-all duration-300 border rounded cursor-pointer border-white/5 bg-cyber-dark text-gray-400 hover:text-white hover:border-white/20" id="filter-VIDEO">VIDEO</button>
-              <button onclick="filterPortfolio('OTROS')" class="px-3 py-1.5 font-mono text-[10px] tracking-widest transition-all duration-300 border rounded cursor-pointer border-white/5 bg-cyber-dark text-gray-400 hover:text-white hover:border-white/20" id="filter-OTROS">OTROS</button>
-            </div>
-
-            <!-- Portfolio Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" id="portfolio-grid">
-              <!-- Injected by JS -->
-            </div>
+      <!-- EXPLORAR -->
+      <div class="content-section w-full flex flex-col lg:flex-row gap-4 fade-in" id="section-EXPLORAR" style="display:none;">
+        <div class="flex-grow flex flex-col">
+          <div class="mb-3 text-left">
+            <h2 class="font-orbitron text-xl sm:text-2xl font-black tracking-widest text-white mb-1">EXPLORAR</h2>
+            <p class="text-gray-400 text-[11px] font-sans max-w-xl">Ventana rápida de proyectos. Seleccione una categoría.</p>
           </div>
+          <div class="flex flex-wrap gap-1.5 py-2 border-y border-white/5 mb-4 overflow-x-auto scrollbar-none" id="filter-bar"></div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5" id="portfolio-grid"></div>
+          <button onclick="openInquiryModal()" class="lg:hidden mt-4 py-2.5 px-4 bg-transparent hover:bg-cyber-cyan hover:text-black text-cyber-cyan border border-cyber-cyan/40 font-orbitron text-[10px] font-bold tracking-widest rounded cursor-pointer">INICIAR PROYECTO</button>
         </div>
-
-        <!-- Stats Sidebar -->
-        <div class="w-full lg:w-72 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-5 rounded-lg flex flex-col justify-between h-auto shadow-2xl relative overflow-hidden text-left shrink-0">
-          <div class="absolute top-0 right-0 w-16 h-[200px] border-r border-t border-cyber-cyan/10 rounded-tr"></div>
-          <div>
-            <div class="flex items-center gap-2 mb-6 pb-4 border-b border-white/5">
-              <i data-lucide="folder-kanban" class="w-4 h-4 text-cyber-cyan"></i>
-              <h4 class="font-orbitron text-xs font-bold tracking-[0.15em] text-white">ESTADÍSTICAS</h4>
-            </div>
-            <div class="flex flex-col gap-3">
-              <div class="flex items-center justify-between py-1 border-b border-white/[0.02]"><span class="font-mono text-[10px] text-gray-400 font-medium tracking-wider">TODOS</span><span class="font-orbitron text-[10px] text-cyber-cyan font-bold neon-text-cyan">48</span></div>
-              <div class="flex items-center justify-between py-1 border-b border-white/[0.02]"><span class="font-mono text-[10px] text-gray-400 font-medium tracking-wider">ARQUITECTURA</span><span class="font-orbitron text-[10px] text-cyber-cyan font-bold neon-text-cyan">18</span></div>
-              <div class="flex items-center justify-between py-1 border-b border-white/[0.02]"><span class="font-mono text-[10px] text-gray-400 font-medium tracking-wider">DISEÑO 3D</span><span class="font-orbitron text-[10px] text-cyber-cyan font-bold neon-text-cyan">13</span></div>
-              <div class="flex items-center justify-between py-1 border-b border-white/[0.02]"><span class="font-mono text-[10px] text-gray-400 font-medium tracking-wider">DISEÑO GRÁFICO</span><span class="font-orbitron text-[10px] text-cyber-cyan font-bold neon-text-cyan">6</span></div>
-              <div class="flex items-center justify-between py-1 border-b border-white/[0.02]"><span class="font-mono text-[10px] text-gray-400 font-medium tracking-wider">VIDEO</span><span class="font-orbitron text-[10px] text-cyber-cyan font-bold neon-text-cyan">6</span></div>
-              <div class="flex items-center justify-between py-1"><span class="font-mono text-[10px] text-gray-400 font-medium tracking-wider">OTROS</span><span class="font-orbitron text-[10px] text-cyber-cyan font-bold neon-text-cyan">4</span></div>
-            </div>
-            <div class="p-4 bg-white/[0.01] rounded border border-white/5 mt-6">
-              <div class="flex items-start gap-2">
-                <i data-lucide="info" class="w-3.5 h-3.5 text-cyber-blue mt-0.5"></i>
-                <p class="font-mono text-[8.5px] text-gray-500 leading-relaxed">Entregables que cumplen con BIM LOD400 y estándares LEED Gold.</p>
-              </div>
-            </div>
-          </div>
-          <button onclick="openInquiryModal()" class="w-full mt-8 pt-4 border-t border-white/5 py-3 px-4 bg-transparent hover:bg-cyber-cyan hover:text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] text-cyber-cyan border border-cyber-cyan/40 hover:border-transparent font-orbitron text-[11px] font-bold tracking-widest rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
-            <span>INICIAR PROYECTO</span>
-            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </button>
+        <div class="hidden lg:flex w-64 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-4 rounded-lg flex-col shadow-2xl text-left shrink-0">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/5"><i data-lucide="folder-kanban" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-widest text-white">ESTADÍSTICAS</h4></div>
+          <div class="flex flex-col gap-2 text-[10px]" id="stats-list"></div>
+          <button onclick="openInquiryModal()" class="w-full mt-6 py-2.5 px-4 bg-transparent hover:bg-cyber-cyan hover:text-black text-cyber-cyan border border-cyber-cyan/40 font-orbitron text-[10px] font-bold tracking-widest rounded cursor-pointer">INICIAR PROYECTO</button>
         </div>
       </div>
 
-      <!-- ========== SECTION: SERVICIOS ========== -->
-      <div class="content-section w-full h-full flex flex-col justify-between fade-in" id="section-SERVICIOS" style="display:none;">
+      <!-- SERVICIOS -->
+      <div class="content-section w-full flex flex-col gap-6 fade-in" id="section-SERVICIOS" style="display:none;">
         <div>
-          <div class="mb-6 text-left">
-            <h2 class="font-orbitron text-2xl font-black tracking-widest text-white mb-2">SERVICIOS</h2>
-            <p class="text-gray-400 text-xs font-sans max-w-xl tracking-wider leading-relaxed">Soluciones creativas y rigurosas que combinan técnica, diseño y estrategia comercial.</p>
+          <div class="mb-4 text-left">
+            <h2 class="font-orbitron text-xl sm:text-2xl font-black tracking-widest text-white mb-1">SERVICIOS</h2>
+            <p class="text-gray-400 text-[11px] font-sans max-w-xl">Soluciones creativas que combinan técnica, diseño y estrategia.</p>
           </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div onclick="openServiceDetail('s1')" class="group relative p-5 bg-gradient-to-b from-cyber-dark to-black border border-white/5 hover:border-cyber-cyan/40 transition-all duration-300 rounded-lg cursor-pointer h-52 flex flex-col justify-between shadow-lg">
-              <div class="absolute top-2 right-2 font-mono text-[7px] text-gray-500 z-10">DISCIPLINE_S1</div>
-              <div class="w-11 h-11 rounded border border-white/10 flex items-center justify-center bg-white/[0.01] hover:bg-cyber-cyan/5 transition-colors"><i data-lucide="building-2" class="w-6 h-6 text-cyber-cyan"></i></div>
-              <div class="text-left mt-4 flex-grow">
-                <h3 class="font-orbitron text-xs font-bold tracking-widest text-white group-hover:text-cyber-cyan transition-colors mb-1.5">ARQUITECTURA</h3>
-                <p class="font-sans text-[10.5px] text-gray-400 leading-relaxed font-light line-clamp-3">Diseño de espacios funcionales, bioclimáticos y excepcionales.</p>
-              </div>
-              <div class="flex items-center gap-1 mt-3 text-[9px] font-mono font-bold tracking-widest text-cyber-cyan group-hover:text-white transition-colors"><span>VER PLAN</span><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></div>
-            </div>
-
-            <div onclick="openServiceDetail('s2')" class="group relative p-5 bg-gradient-to-b from-cyber-dark to-black border border-white/5 hover:border-cyber-cyan/40 transition-all duration-300 rounded-lg cursor-pointer h-52 flex flex-col justify-between shadow-lg">
-              <div class="absolute top-2 right-2 font-mono text-[7px] text-gray-500 z-10">DISCIPLINE_S2</div>
-              <div class="w-11 h-11 rounded border border-white/10 flex items-center justify-center bg-white/[0.01] hover:bg-cyber-cyan/5 transition-colors"><i data-lucide="palette" class="w-6 h-6 text-cyber-cyan"></i></div>
-              <div class="text-left mt-4 flex-grow">
-                <h3 class="font-orbitron text-xs font-bold tracking-widest text-white group-hover:text-cyber-cyan transition-colors mb-1.5">DISEÑO GRÁFICO</h3>
-                <p class="font-sans text-[10.5px] text-gray-400 leading-relaxed font-light line-clamp-3">Identidades visuales sofisticadas que comunican y conectan.</p>
-              </div>
-              <div class="flex items-center gap-1 mt-3 text-[9px] font-mono font-bold tracking-widest text-cyber-cyan group-hover:text-white transition-colors"><span>VER PLAN</span><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></div>
-            </div>
-
-            <div onclick="openServiceDetail('s3')" class="group relative p-5 bg-gradient-to-b from-cyber-dark to-black border border-white/5 hover:border-cyber-cyan/40 transition-all duration-300 rounded-lg cursor-pointer h-52 flex flex-col justify-between shadow-lg">
-              <div class="absolute top-2 right-2 font-mono text-[7px] text-gray-500 z-10">DISCIPLINE_S3</div>
-              <div class="w-11 h-11 rounded border border-white/10 flex items-center justify-center bg-white/[0.01] hover:bg-cyber-cyan/5 transition-colors"><i data-lucide="video" class="w-6 h-6 text-cyber-cyan"></i></div>
-              <div class="text-left mt-4 flex-grow">
-                <h3 class="font-orbitron text-xs font-bold tracking-widest text-white group-hover:text-cyber-cyan transition-colors mb-1.5">VIDEO</h3>
-                <p class="font-sans text-[10.5px] text-gray-400 leading-relaxed font-light line-clamp-3">Producción y postproducción audiovisual cinematográfica de alta calidad.</p>
-              </div>
-              <div class="flex items-center gap-1 mt-3 text-[9px] font-mono font-bold tracking-widest text-cyber-cyan group-hover:text-white transition-colors"><span>VER PLAN</span><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></div>
-            </div>
-
-            <div onclick="openServiceDetail('s4')" class="group relative p-5 bg-gradient-to-b from-cyber-dark to-black border border-white/5 hover:border-cyber-cyan/40 transition-all duration-300 rounded-lg cursor-pointer h-52 flex flex-col justify-between shadow-lg">
-              <div class="absolute top-2 right-2 font-mono text-[7px] text-gray-500 z-10">DISCIPLINE_S4</div>
-              <div class="w-11 h-11 rounded border border-white/10 flex items-center justify-center bg-white/[0.01] hover:bg-cyber-cyan/5 transition-colors"><i data-lucide="music" class="w-6 h-6 text-cyber-cyan"></i></div>
-              <div class="text-left mt-4 flex-grow">
-                <h3 class="font-orbitron text-xs font-bold tracking-widest text-white group-hover:text-cyber-cyan transition-colors mb-1.5">MÚSICA</h3>
-                <p class="font-sans text-[10.5px] text-gray-400 leading-relaxed font-light line-clamp-3">Composiciones sonoras y diseño de audio profesional.</p>
-              </div>
-              <div class="flex items-center gap-1 mt-3 text-[9px] font-mono font-bold tracking-widest text-cyber-cyan group-hover:text-white transition-colors"><span>VER PLAN</span><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></div>
-            </div>
-          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" id="services-grid"></div>
         </div>
-
-        <div class="pt-6 border-t border-white/5">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="flex items-start gap-3 p-4 bg-white/[0.01] border border-white/5 rounded-lg text-left hover:border-cyber-blue/20 transition-all duration-300 shadow-md">
-              <div class="p-2 bg-cyber-blue/10 border border-cyber-blue/25 rounded shrink-0"><i data-lucide="target" class="w-5 h-5 text-cyber-blue"></i></div>
-              <div><h4 class="font-orbitron font-bold text-[10px] tracking-wider text-white mb-1">ENFOQUE ESTRATÉGICO</h4><p class="font-sans text-[9.5px] text-gray-400 leading-normal">Análisis profundo de la necesidad real comercial.</p></div>
-            </div>
-            <div class="flex items-start gap-3 p-4 bg-white/[0.01] border border-white/5 rounded-lg text-left hover:border-cyber-blue/20 transition-all duration-300 shadow-md">
-              <div class="p-2 bg-cyber-blue/10 border border-cyber-blue/25 rounded shrink-0"><i data-lucide="lightbulb" class="w-5 h-5 text-cyber-blue"></i></div>
-              <div><h4 class="font-orbitron font-bold text-[10px] tracking-wider text-white mb-1">DISEÑO INTEGRAL</h4><p class="font-sans text-[9.5px] text-gray-400 leading-normal">Creamos con propósito y rigor geométrico.</p></div>
-            </div>
-            <div class="flex items-start gap-3 p-4 bg-white/[0.01] border border-white/5 rounded-lg text-left hover:border-cyber-blue/20 transition-all duration-300 shadow-md">
-              <div class="p-2 bg-cyber-blue/10 border border-cyber-blue/25 rounded shrink-0"><i data-lucide="cpu" class="w-5 h-5 text-cyber-blue"></i></div>
-              <div><h4 class="font-orbitron font-bold text-[10px] tracking-wider text-white mb-1">TECNOLOGÍA AVANZADA</h4><p class="font-sans text-[9.5px] text-gray-400 leading-normal">Herramientas computacionales de última generación.</p></div>
-            </div>
-            <div class="flex items-start gap-3 p-4 bg-white/[0.01] border border-white/5 rounded-lg text-left hover:border-cyber-blue/20 transition-all duration-300 shadow-md">
-              <div class="p-2 bg-cyber-blue/10 border border-cyber-blue/25 rounded shrink-0"><i data-lucide="award" class="w-5 h-5 text-cyber-blue"></i></div>
-              <div><h4 class="font-orbitron font-bold text-[10px] tracking-wider text-white mb-1">RESULTADOS REALES</h4><p class="font-sans text-[9.5px] text-gray-400 leading-normal">Entregables de alto impacto global.</p></div>
-            </div>
+        <div class="pt-4 border-t border-white/5">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="flex items-start gap-2 p-3 bg-white/[0.01] border border-white/5 rounded-lg text-left"><i data-lucide="target" class="w-4 h-4 text-cyber-blue mt-0.5 shrink-0"></i><div><h4 class="font-orbitron font-bold text-[9px] tracking-wider text-white">ENFOQUE</h4><p class="font-sans text-[9px] text-gray-400">Análisis profundo comercial.</p></div></div>
+            <div class="flex items-start gap-2 p-3 bg-white/[0.01] border border-white/5 rounded-lg text-left"><i data-lucide="lightbulb" class="w-4 h-4 text-cyber-blue mt-0.5 shrink-0"></i><div><h4 class="font-orbitron font-bold text-[9px] tracking-wider text-white">INTEGRAL</h4><p class="font-sans text-[9px] text-gray-400">Propósito y rigor geométrico.</p></div></div>
+            <div class="flex items-start gap-2 p-3 bg-white/[0.01] border border-white/5 rounded-lg text-left"><i data-lucide="cpu" class="w-4 h-4 text-cyber-blue mt-0.5 shrink-0"></i><div><h4 class="font-orbitron font-bold text-[9px] tracking-wider text-white">TECNOLOGÍA</h4><p class="font-sans text-[9px] text-gray-400">Herramientas avanzadas.</p></div></div>
+            <div class="flex items-start gap-2 p-3 bg-white/[0.01] border border-white/5 rounded-lg text-left"><i data-lucide="award" class="w-4 h-4 text-cyber-blue mt-0.5 shrink-0"></i><div><h4 class="font-orbitron font-bold text-[9px] tracking-wider text-white">RESULTADOS</h4><p class="font-sans text-[9px] text-gray-400">Alto impacto global.</p></div></div>
           </div>
         </div>
       </div>
 
-      <!-- ========== SECTION: ARQUITECTURA ========== -->
-      <div class="content-section w-full h-full flex flex-col lg:flex-row gap-6 fade-in" id="section-ARQUITECTURA" style="display:none;">
-        <div class="flex-grow flex flex-col justify-between">
-          <div>
-            <div class="mb-4 text-left">
-              <h2 class="font-orbitron text-2xl font-black tracking-widest text-white mb-2">ARQUITECTURA</h2>
-              <p class="text-gray-400 text-xs font-sans max-w-xl tracking-wider leading-relaxed">Diseñamos espacios audaces que combinan rigor funcional, estética minimalista y sostenibilidad.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
-              <div class="md:col-span-7 relative h-[320px] rounded-lg overflow-hidden border border-white/10 shadow-xl group flex flex-col justify-end cursor-pointer" onclick="openFullscreenImage('./img/luxury_villa_1781381880840.jpg')">
-                <img src="./img/luxury_villa_1781381880840.jpg" alt="Villa" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75 group-hover:brightness-50" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-[5]"></div>
-                <div class="absolute top-3 left-3 bg-cyber-dark/80 backdrop-blur-sm border border-cyber-cyan/30 px-2 py-1 rounded font-mono text-[8px] text-cyber-cyan z-10 font-bold uppercase tracking-widest">PROYECTO INTEGRAL // BIM.LOD400</div>
-                <div class="relative z-10 p-5 text-left">
-                  <span class="font-mono text-[8.5px] text-cyber-cyan font-bold tracking-wider mb-1.5 block">VIVIENDA CONTEMPORÁNEA</span>
-                  <h3 class="font-orbitron text-lg font-black tracking-widest text-white leading-none mb-2 group-hover:text-cyber-cyan transition-colors">CASA AEROCAFÉ</h3>
-                  <p class="font-sans text-[11px] text-gray-300 leading-relaxed max-w-md line-clamp-2">Integración simbiótica con el eje cafetero colombiano. Madera certificada y cubiertas vivas.</p>
-                </div>
-              </div>
-
-              <div class="md:col-span-5 grid grid-cols-2 gap-4">
-                <div class="group relative rounded-lg overflow-hidden border border-white/5 bg-cyber-dark flex flex-col justify-end p-2 cursor-pointer h-[155px]" onclick="openFullscreenImage('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80')">
-                  <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-50 group-hover:brightness-40 group-hover:scale-105 transition-all duration-500" />
-                  <div class="relative z-10 text-left"><span class="font-mono text-[6px] bg-cyber-blue/80 px-1 py-0.5 rounded text-white">COMERCIAL</span><h4 class="font-orbitron font-bold text-[9px] tracking-widest text-white mt-1 group-hover:text-cyber-cyan">EDIFICIO ORIGAMI</h4></div>
-                </div>
-                <div class="group relative rounded-lg overflow-hidden border border-white/5 bg-cyber-dark flex flex-col justify-end p-2 cursor-pointer h-[155px]" onclick="openFullscreenImage('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80')">
-                  <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-50 group-hover:brightness-40 group-hover:scale-105 transition-all duration-500" />
-                  <div class="relative z-10 text-left"><span class="font-mono text-[6px] bg-cyber-blue/80 px-1 py-0.5 rounded text-white">VIVIENDAS</span><h4 class="font-orbitron font-bold text-[9px] tracking-widest text-white mt-1 group-hover:text-cyber-cyan">PABELLÓN ZENITH</h4></div>
-                </div>
-                <div class="group relative rounded-lg overflow-hidden border border-white/5 bg-cyber-dark flex flex-col justify-end p-2 cursor-pointer h-[155px]" onclick="openFullscreenImage('https://images.unsplash.com/photo-1504297050568-910d24c426d3?auto=format&fit=crop&w=800&q=80')">
-                  <img src="https://images.unsplash.com/photo-1504297050568-910d24c426d3?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-50 group-hover:brightness-40 group-hover:scale-105 transition-all duration-500" />
-                  <div class="relative z-10 text-left"><span class="font-mono text-[6px] bg-cyber-blue/80 px-1 py-0.5 rounded text-white">INSTITUCIONAL</span><h4 class="font-orbitron font-bold text-[9px] tracking-widest text-white mt-1 group-hover:text-cyber-cyan">CAMPUS VERDE</h4></div>
-                </div>
-                <div class="group relative rounded-lg overflow-hidden border border-white/5 bg-cyber-dark flex flex-col justify-end p-2 cursor-pointer h-[155px]" onclick="openFullscreenImage('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=80')">
-                  <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-50 group-hover:brightness-40 group-hover:scale-105 transition-all duration-500" />
-                  <div class="relative z-10 text-left"><span class="font-mono text-[6px] bg-cyber-blue/80 px-1 py-0.5 rounded text-white">URBANISMO</span><h4 class="font-orbitron font-bold text-[9px] tracking-widest text-white mt-1 group-hover:text-cyber-cyan">PORTUARIO</h4></div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- ARQUITECTURA -->
+      <div class="content-section w-full flex flex-col lg:flex-row gap-4 fade-in" id="section-ARQUITECTURA" style="display:none;">
+        <div class="flex-grow">
+          <div class="mb-3 text-left"><h2 class="font-orbitron text-xl sm:text-2xl font-black tracking-widest text-white mb-1">ARQUITECTURA</h2><p class="text-gray-400 text-[11px] font-sans max-w-xl">Diseñamos espacios audaces con rigor funcional y sostenibilidad.</p></div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-3" id="arquitectura-grid"></div>
         </div>
-
-        <div class="w-full lg:w-72 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-5 rounded-lg flex flex-col justify-between h-auto shadow-2xl relative text-left shrink-0">
-          <div class="absolute top-0 right-0 w-16 h-12 border-r border-t border-cyber-cyan/15 rounded-tr"></div>
-          <div>
-            <div class="flex items-center gap-2 mb-6 pb-4 border-b border-white/5"><i data-lucide="compass" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-[0.15em] text-white">PLAN DE OBRA</h4></div>
-            <div class="flex flex-col gap-4 text-left font-sans text-[9px] text-gray-400 leading-relaxed">
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">ANÁLISIS BIOCLIMÁTICO</span>Simulaciones de soleamiento y vientos.</div>
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">DISEÑO DETALLADO</span>Planos bajo flujos BIM interoperables.</div>
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">OBRA SUSTENTABLE</span>Materiales de bajo carbono certificados.</div>
-            </div>
+        <div class="w-full lg:w-60 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-4 rounded-lg text-left shrink-0">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/5"><i data-lucide="compass" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-widest text-white">PLAN DE OBRA</h4></div>
+          <div class="flex flex-col gap-3 text-[10px] text-gray-400">
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">BIOCLIMÁTICO</span>Simulaciones pasivas.</div>
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">DETALLADO</span>Planos BIM.</div>
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">SUSTENTABLE</span>Bajo carbono.</div>
           </div>
-          <button onclick="openInquiryModal()" class="w-full mt-6 py-2.5 px-4 bg-transparent hover:bg-cyber-cyan hover:text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] text-cyber-cyan border border-cyber-cyan/40 hover:border-transparent font-orbitron text-[10px] font-bold tracking-widest rounded transition-all duration-300 hover:scale-[1.02] cursor-pointer">INICIAR VIABILIDAD</button>
+          <button onclick="openInquiryModal()" class="w-full mt-4 py-2 px-3 bg-transparent hover:bg-cyber-cyan hover:text-black text-cyber-cyan border border-cyber-cyan/40 font-orbitron text-[9px] font-bold tracking-widest rounded cursor-pointer">INICIAR VIABILIDAD</button>
         </div>
       </div>
 
-      <!-- ========== SECTION: DISEÑO GRÁFICO ========== -->
-      <div class="content-section w-full h-full flex flex-col lg:flex-row gap-6 fade-in" id="section-DISEÑO-GRÁFICO" style="display:none;">
-        <div class="flex-grow flex flex-col justify-between">
-          <div>
-            <div class="mb-4 text-left">
-              <h2 class="font-orbitron text-2xl font-black tracking-widest text-white mb-2">DISEÑO GRÁFICO</h2>
-              <p class="text-gray-400 text-xs font-sans max-w-xl tracking-wider leading-relaxed">Comunicación visual sofisticada que transmite, conecta e inspira.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
-              <div class="md:col-span-7 relative h-[320px] rounded-lg overflow-hidden border border-white/10 shadow-xl group flex flex-col justify-end cursor-pointer" onclick="openFullscreenImage('./img/design_mockup_1781381899975.jpg')">
-                <img src="./img/design_mockup_1781381899975.jpg" alt="Mockup" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75 group-hover:brightness-50" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-[5]"></div>
-                <div class="absolute top-3 left-3 bg-cyber-dark/80 backdrop-blur-sm border border-cyber-cyan/30 px-2 py-1 rounded font-mono text-[8px] text-cyber-cyan z-10 font-bold uppercase tracking-widest">BRAND SYSTEM</div>
-                <div class="relative z-10 p-5 text-left">
-                  <span class="font-mono text-[8.5px] text-cyber-cyan font-bold tracking-wider mb-1.5 block">BRANDING & NARRATIVE</span>
-                  <h3 class="font-orbitron text-lg font-black tracking-widest text-white leading-none mb-2 group-hover:text-cyber-cyan transition-colors">IDENTIDAD CORPORATIVA ALPHA</h3>
-                  <p class="font-sans text-[11px] text-gray-300 leading-relaxed max-w-md line-clamp-2">Manuales normativos rigurosos y diseño de empaques para startups globales.</p>
-                </div>
-              </div>
-
-              <div class="md:col-span-5 grid grid-cols-2 gap-4">
-                <div class="group relative rounded-lg overflow-hidden border border-white/5 bg-cyber-dark flex flex-col justify-end p-2 cursor-pointer h-[155px]" onclick="openFullscreenImage('https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80')">
-                  <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-50 group-hover:brightness-40 group-hover:scale-105 transition-all duration-500" />
-                  <div class="relative z-10 text-left"><span class="font-mono text-[6px] bg-cyber-blue/80 px-1 py-0.5 rounded text-white">IDENTIDAD</span><h4 class="font-orbitron font-bold text-[9px] tracking-widest text-white mt-1 group-hover:text-cyber-cyan">MANUAL ALPHA</h4></div>
-                </div>
-                <div class="group relative rounded-lg overflow-hidden border border-white/5 bg-cyber-dark flex flex-col justify-end p-2 cursor-pointer h-[155px]" onclick="openFullscreenImage('https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=800&q=80')">
-                  <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-50 group-hover:brightness-40 group-hover:scale-105 transition-all duration-500" />
-                  <div class="relative z-10 text-left"><span class="font-mono text-[6px] bg-cyber-blue/80 px-1 py-0.5 rounded text-white">EDITORIAL</span><h4 class="font-orbitron font-bold text-[9px] tracking-widest text-white mt-1 group-hover:text-cyber-cyan">PUBLICACIÓN LÚMEN</h4></div>
-                </div>
-                <div class="group relative rounded-lg overflow-hidden border border-white/5 bg-cyber-dark flex flex-col justify-end p-2 cursor-pointer h-[155px]" onclick="openFullscreenImage('https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=800&q=80')">
-                  <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-50 group-hover:brightness-40 group-hover:scale-105 transition-all duration-500" />
-                  <div class="relative z-10 text-left"><span class="font-mono text-[6px] bg-cyber-blue/80 px-1 py-0.5 rounded text-white">PUBLICIDAD</span><h4 class="font-orbitron font-bold text-[9px] tracking-widest text-white mt-1 group-hover:text-cyber-cyan">EMPAQUE NEXUS</h4></div>
-                </div>
-                <div class="group relative rounded-lg overflow-hidden border border-white/5 bg-cyber-dark flex flex-col justify-end p-2 cursor-pointer h-[155px]" onclick="openFullscreenImage('https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=800&q=80')">
-                  <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-50 group-hover:brightness-40 group-hover:scale-105 transition-all duration-500" />
-                  <div class="relative z-10 text-left"><span class="font-mono text-[6px] bg-cyber-blue/80 px-1 py-0.5 rounded text-white">DIGITAL</span><h4 class="font-orbitron font-bold text-[9px] tracking-widest text-white mt-1 group-hover:text-cyber-cyan">FESTIVAL SOLIS</h4></div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- DISEÑO GRÁFICO -->
+      <div class="content-section w-full flex flex-col lg:flex-row gap-4 fade-in" id="section-DISEÑO-GRÁFICO" style="display:none;">
+        <div class="flex-grow">
+          <div class="mb-3 text-left"><h2 class="font-orbitron text-xl sm:text-2xl font-black tracking-widest text-white mb-1">DISEÑO GRÁFICO</h2><p class="text-gray-400 text-[11px] font-sans max-w-xl">Comunicación visual sofisticada que transmite e inspira.</p></div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-3" id="diseno-grid"></div>
         </div>
-
-        <div class="w-full lg:w-72 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-5 rounded-lg flex flex-col justify-between h-auto shadow-2xl relative text-left shrink-0">
-          <div class="absolute top-0 right-0 w-16 h-12 border-r border-t border-cyber-cyan/15 rounded-tr"></div>
-          <div>
-            <div class="flex items-center gap-2 mb-6 pb-4 border-b border-white/5"><i data-lucide="palette" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-[0.15em] text-white">REGLAS VISUALES</h4></div>
-            <div class="flex flex-col gap-4 text-left font-sans text-[9px] text-gray-400 leading-relaxed">
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">TIPOGRAFÍA PROPIA</span>Fuentes vectoriales exclusivas para identificación óptima.</div>
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">SISTEMAS MODULARES</span>Patrones geométricos y proporciones áureas.</div>
-            </div>
+        <div class="w-full lg:w-60 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-4 rounded-lg text-left shrink-0">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/5"><i data-lucide="palette" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-widest text-white">REGLAS VISUALES</h4></div>
+          <div class="flex flex-col gap-3 text-[10px] text-gray-400">
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">TIPOGRAFÍA</span>Fuentes exclusivas.</div>
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">MODULAR</span>Geometría áurea.</div>
           </div>
-          <button onclick="openInquiryModal()" class="w-full mt-6 py-2.5 px-4 bg-transparent hover:bg-cyber-cyan hover:text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] text-cyber-cyan border border-cyber-cyan/40 hover:border-transparent font-orbitron text-[10px] font-bold tracking-widest rounded transition-all duration-300 hover:scale-[1.02] cursor-pointer">DISEÑAR MARCA</button>
+          <button onclick="openInquiryModal()" class="w-full mt-4 py-2 px-3 bg-transparent hover:bg-cyber-cyan hover:text-black text-cyber-cyan border border-cyber-cyan/40 font-orbitron text-[9px] font-bold tracking-widest rounded cursor-pointer">DISEÑAR MARCA</button>
         </div>
       </div>
 
-      <!-- ========== SECTION: VIDEO ========== -->
-      <div class="content-section w-full h-full flex flex-col lg:flex-row gap-6 text-left fade-in" id="section-VIDEO" style="display:none;">
-        <div class="flex-grow flex flex-col justify-between">
-          <div>
-            <div class="mb-4">
-              <h2 class="font-orbitron text-2xl font-black tracking-widest text-white mb-2">VIDEO & MOTION DESIGN</h2>
-              <p class="text-gray-400 text-xs font-sans max-w-xl tracking-wider leading-relaxed">Producción y postproducción audiovisual cinematográfica de alta calidad.</p>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-4 mt-6">
-              <div onclick="openFullscreenVideo('https://assets.mixkit.co/videos/preview/mixkit-neon-light-from-a-tunnel-in-a-futuristic-city-41865-large.mp4')" class="group relative h-48 rounded-lg overflow-hidden border border-white/5 hover:border-cyber-cyan/40 bg-cyber-dark p-4 flex flex-col justify-end transition-all duration-300 flex-1 shadow-lg cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-[0.45] group-hover:brightness-40 transition-all duration-500 group-hover:scale-105" />
-                <div class="absolute top-3 right-3 w-10 h-10 rounded-full bg-cyber-cyan/20 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan z-10"><i data-lucide="play" class="w-5 h-5 fill-current"></i></div>
-                <div class="relative z-10 text-left">
-                  <span class="font-mono text-[7px] text-cyber-cyan bg-cyber-cyan/10 px-1.5 py-0.5 rounded inline-block mb-1">2:40 Min</span>
-                  <h4 class="font-orbitron font-bold text-[10px] text-white tracking-widest leading-none mb-1">CINEMÁTICA BRUTALISTA</h4>
-                  <p class="font-sans text-[8.5px] text-gray-400">Dirección de arte experimental</p>
-                </div>
-              </div>
-              <div onclick="openFullscreenVideo('https://assets.mixkit.co/videos/preview/mixkit-cyberpunk-city-street-with-neon-lights-at-night-41846-large.mp4')" class="group relative h-48 rounded-lg overflow-hidden border border-white/5 hover:border-cyber-cyan/40 bg-cyber-dark p-4 flex flex-col justify-end transition-all duration-300 flex-1 shadow-lg cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-[0.45] group-hover:brightness-40 transition-all duration-500 group-hover:scale-105" />
-                <div class="absolute top-3 right-3 w-10 h-10 rounded-full bg-cyber-cyan/20 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan z-10"><i data-lucide="play" class="w-5 h-5 fill-current"></i></div>
-                <div class="relative z-10 text-left">
-                  <span class="font-mono text-[7px] text-cyber-cyan bg-cyber-cyan/10 px-1.5 py-0.5 rounded inline-block mb-1">3:15 Min</span>
-                  <h4 class="font-orbitron font-bold text-[10px] text-white tracking-widest leading-none mb-1">SINFONÍA DE ACERO</h4>
-                  <p class="font-sans text-[8.5px] text-gray-400">Montaje estructural de metal</p>
-                </div>
-              </div>
-              <div onclick="openFullscreenVideo('https://assets.mixkit.co/videos/preview/mixkit-abstract-laser-lights-background-loop-41855-large.mp4')" class="group relative h-48 rounded-lg overflow-hidden border border-white/5 hover:border-cyber-cyan/40 bg-cyber-dark p-4 flex flex-col justify-end transition-all duration-300 flex-1 shadow-lg cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80" alt="" class="absolute inset-0 w-full h-full object-cover filter brightness-[0.45] group-hover:brightness-40 transition-all duration-500 group-hover:scale-105" />
-                <div class="absolute top-3 right-3 w-10 h-10 rounded-full bg-cyber-cyan/20 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan z-10"><i data-lucide="play" class="w-5 h-5 fill-current"></i></div>
-                <div class="relative z-10 text-left">
-                  <span class="font-mono text-[7px] text-cyber-cyan bg-cyber-cyan/10 px-1.5 py-0.5 rounded inline-block mb-1">1:50 Min</span>
-                  <h4 class="font-orbitron font-bold text-[10px] text-white tracking-widest leading-none mb-1">ECOS DEL TIEMPO</h4>
-                  <p class="font-sans text-[8.5px] text-gray-400">Edición de clips con desfases</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- VIDEO -->
+      <div class="content-section w-full flex flex-col lg:flex-row gap-4 fade-in" id="section-VIDEO" style="display:none;">
+        <div class="flex-grow">
+          <div class="mb-3 text-left"><h2 class="font-orbitron text-xl sm:text-2xl font-black tracking-widest text-white mb-1">VIDEO & MOTION</h2><p class="text-gray-400 text-[11px] font-sans max-w-xl">Producción y postproducción audiovisual cinematográfica.</p></div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" id="video-grid"></div>
         </div>
-        <div class="w-full lg:w-72 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-5 rounded-lg flex flex-col justify-between h-auto shadow-2xl relative shrink-0">
-          <div class="absolute top-0 right-0 w-16 h-12 border-r border-t border-cyber-cyan/15 rounded-tr"></div>
-          <div>
-            <div class="flex items-center gap-2 mb-6 pb-4 border-b border-white/5"><i data-lucide="video" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-[0.15em] text-white">METODOLOGÍA AUDIOVISUAL</h4></div>
-            <div class="flex flex-col gap-4 text-left font-sans text-[9px] text-gray-400 leading-relaxed">
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">STORYBOARD</span>Definición de tomas clave y ritmos narrativos.</div>
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">COLOR GRADING</span>Perfil cromático bajo estándares ACES.</div>
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">POST-PRODUCCIÓN</span>VFX, rotoscopia y simulaciones 3D.</div>
-            </div>
+        <div class="w-full lg:w-60 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-4 rounded-lg text-left shrink-0">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/5"><i data-lucide="video" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-widest text-white">METODOLOGÍA</h4></div>
+          <div class="flex flex-col gap-3 text-[10px] text-gray-400">
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">STORYBOARD</span>Tomas clave.</div>
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">COLOR</span>Estándar ACES.</div>
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">POST</span>VFX y 3D.</div>
           </div>
-          <button onclick="openInquiryModal()" class="w-full mt-6 py-2.5 px-4 bg-transparent hover:bg-cyber-cyan hover:text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] text-cyber-cyan border border-cyber-cyan/40 hover:border-transparent font-orbitron text-[10px] font-bold tracking-widest rounded transition-all duration-300 hover:scale-[1.02] cursor-pointer">INICIAR PROYECTO</button>
+          <button onclick="openInquiryModal()" class="w-full mt-4 py-2 px-3 bg-transparent hover:bg-cyber-cyan hover:text-black text-cyber-cyan border border-cyber-cyan/40 font-orbitron text-[9px] font-bold tracking-widest rounded cursor-pointer">INICIAR PROYECTO</button>
         </div>
       </div>
 
-      <!-- ========== SECTION: MÚSICA ========== -->
-      <div class="content-section w-full h-full flex flex-col lg:flex-row gap-6 text-left fade-in" id="section-MÚSICA" style="display:none;">
-        <div class="flex-grow flex flex-col justify-between">
-          <div>
-            <div class="mb-4">
-              <h2 class="font-orbitron text-2xl font-black tracking-widest text-white mb-2">MÚSICA & SOUND DESIGN</h2>
-              <p class="text-gray-400 text-xs font-sans max-w-xl tracking-wider leading-relaxed">Composiciones sonoras, diseño de Foley y síntesis modular para plataformas de entretenimiento.</p>
+      <!-- MÚSICA -->
+      <div class="content-section w-full flex flex-col lg:flex-row gap-4 fade-in" id="section-MÚSICA" style="display:none;">
+        <div class="flex-grow">
+          <div class="mb-3 text-left"><h2 class="font-orbitron text-xl sm:text-2xl font-black tracking-widest text-white mb-1">MÚSICA & SOUND</h2><p class="text-gray-400 text-[11px] font-sans max-w-xl">Composiciones sonoras, Foley y síntesis modular.</p></div>
+          <div class="p-4 bg-white/[0.01] border border-white/5 rounded-lg shadow-xl">
+            <div class="flex items-center gap-2 mb-3"><i data-lucide="music" class="w-4 h-4 text-cyber-cyan"></i><span class="font-orbitron font-semibold text-[10px] tracking-widest text-white">PIANO DIGITAL</span><span class="font-mono text-[8px] text-gray-500 ml-auto">Desliza ↔</span></div>
+            <div class="piano-wrapper"><div class="piano-container" id="piano-keys"></div></div>
+          </div>
+          <div class="mt-4">
+            <div class="flex items-center gap-2 mb-2"><i data-lucide="list-music" class="w-4 h-4 text-cyber-cyan"></i><span class="font-orbitron font-semibold text-[10px] tracking-widest text-white">PLAYLIST</span></div>
+            <div id="track-list"></div>
+          </div>
+          <div class="music-player-bar mt-3" id="music-player-bar" style="display:none;">
+            <button onclick="togglePlay()" id="player-play-btn" class="w-9 h-9 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan hover:bg-cyber-cyan hover:text-black transition-all shrink-0"><i data-lucide="play" class="w-4 h-4"></i></button>
+            <div class="flex-grow min-w-0">
+              <div class="flex items-center justify-between mb-1 gap-2"><span id="player-title" class="font-orbitron text-[10px] font-bold tracking-wider text-white truncate">-</span><span class="font-mono text-[8px] text-gray-500 shrink-0"><span id="player-current-time">0:00</span> / <span id="player-total-time">0:00</span></span></div>
+              <div class="progress-bar" onclick="seekTrack(event)"><div class="progress-fill" id="player-progress-fill" style="width:0%"></div></div>
+              <p id="player-artist" class="font-mono text-[8px] text-gray-500 truncate mt-0.5">-</p>
             </div>
-
-            <!-- Piano -->
-            <div class="p-6 bg-white/[0.01] border border-white/5 rounded-lg mt-6 relative overflow-hidden shadow-xl">
-              <div class="flex items-center gap-2 mb-4">
-                <i data-lucide="music" class="w-4 h-4 text-cyber-cyan"></i>
-                <span class="font-orbitron font-semibold text-[9px] tracking-widest text-white">PIANO DIGITAL INTERACTIVO</span>
-              </div>
-              <div class="piano-container" id="piano-keys"></div>
-            </div>
-
-            <!-- Track List -->
-            <div class="mt-6">
-              <div class="flex items-center gap-2 mb-3">
-                <i data-lucide="list-music" class="w-4 h-4 text-cyber-cyan"></i>
-                <span class="font-orbitron font-semibold text-[9px] tracking-widest text-white">PLAYLIST</span>
-              </div>
-              <div id="track-list"></div>
-            </div>
-
-            <!-- Music Player Bar -->
-            <div class="music-player-bar mt-6" id="music-player-bar" style="display:none;">
-              <button onclick="togglePlay()" id="player-play-btn" class="w-10 h-10 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan hover:bg-cyber-cyan hover:text-black transition-all shrink-0">
-                <i data-lucide="play" class="w-5 h-5"></i>
-              </button>
-              <div class="flex-grow min-w-0">
-                <div class="flex items-center justify-between mb-1">
-                  <span id="player-title" class="font-orbitron text-[10px] font-bold tracking-wider text-white truncate">-</span>
-                  <span class="font-mono text-[9px] text-gray-500"><span id="player-current-time">0:00</span> / 0:00</span>
-                </div>
-                <div class="progress-bar" onclick="seekTrack(event)">
-                  <div class="progress-fill" id="player-progress-fill" style="width:0%"></div>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 shrink-0">
-                <button onclick="skipTrack(-1)" class="text-gray-400 hover:text-cyber-cyan transition-colors cursor-pointer"><i data-lucide="skip-back" class="w-4 h-4"></i></button>
-                <button onclick="skipTrack(1)" class="text-gray-400 hover:text-cyber-cyan transition-colors cursor-pointer"><i data-lucide="skip-forward" class="w-4 h-4"></i></button>
-                <div id="player-volume-icon" class="text-cyber-cyan"><i data-lucide="volume-2" class="w-4 h-4"></i></div>
-                <input type="range" min="0" max="1" step="0.05" value="0.8" onchange="setVolume(this.value)" class="w-16" />
-              </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button onclick="skipTrack(-1)" class="text-gray-400 hover:text-cyber-cyan cursor-pointer"><i data-lucide="skip-back" class="w-3.5 h-3.5"></i></button>
+              <button onclick="skipTrack(1)" class="text-gray-400 hover:text-cyber-cyan cursor-pointer"><i data-lucide="skip-forward" class="w-3.5 h-3.5"></i></button>
+              <div id="player-volume-icon" class="text-cyber-cyan"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></div>
+              <input type="range" min="0" max="1" step="0.05" value="0.8" onchange="setVolume(this.value)" class="w-12 sm:w-16" />
             </div>
           </div>
         </div>
-
-        <div class="w-full lg:w-72 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-5 rounded-lg flex flex-col justify-between h-auto shadow-2xl relative shrink-0">
-          <div class="absolute top-0 right-0 w-16 h-12 border-r border-t border-cyber-cyan/15 rounded-tr"></div>
-          <div>
-            <div class="flex items-center gap-2 mb-6 pb-4 border-b border-white/5"><i data-lucide="music" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-[0.15em] text-white">SINTONÍA ACÚSTICA</h4></div>
-            <div class="flex flex-col gap-4 text-left font-sans text-[9px] text-gray-400 leading-relaxed">
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">DISEÑO DE FOLEY</span>Efectos de sonido reales para elementos visuales.</div>
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">MEZCLA EN DOLBY</span>Espacio tridimensional sonoro optimizado.</div>
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">LOGO SONORO</span>Firma auditiva corta corporativa.</div>
-            </div>
+        <div class="w-full lg:w-60 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-4 rounded-lg text-left shrink-0">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/5"><i data-lucide="music" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-widest text-white">SINTONÍA</h4></div>
+          <div class="flex flex-col gap-3 text-[10px] text-gray-400">
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">FOLEY</span>Efectos reales.</div>
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">DOLBY</span>Espacio 3D.</div>
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">LOGO SONORO</span>Firma auditiva.</div>
           </div>
-          <button onclick="openInquiryModal()" class="w-full mt-6 py-2.5 px-4 bg-transparent hover:bg-cyber-cyan hover:text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] text-cyber-cyan border border-cyber-cyan/40 hover:border-transparent font-orbitron text-[10px] font-bold tracking-widest rounded transition-all duration-300 hover:scale-[1.02] cursor-pointer">COTIZACIÓN MÚSICA</button>
+          <button onclick="openInquiryModal()" class="w-full mt-4 py-2 px-3 bg-transparent hover:bg-cyber-cyan hover:text-black text-cyber-cyan border border-cyber-cyan/40 font-orbitron text-[9px] font-bold tracking-widest rounded cursor-pointer">COTIZAR</button>
         </div>
       </div>
 
-      <!-- ========== SECTION: OTROS ========== -->
-      <div class="content-section w-full h-full flex flex-col lg:flex-row gap-6 text-left fade-in" id="section-OTROS" style="display:none;">
-        <div class="flex-grow flex flex-col justify-between">
-          <div>
-            <div class="mb-4">
-              <h2 class="font-orbitron text-2xl font-black tracking-widest text-white mb-2">OTROS</h2>
-              <p class="text-gray-400 text-xs font-sans max-w-xl tracking-wider leading-relaxed">Archivos, información y expresiones creativas de todo tipo. Programación creativa, arte generativo, documentos y recursos multimediales.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-              <div class="group p-5 rounded-lg border border-white/5 bg-cyber-dark hover:border-cyber-cyan/30 flex justify-between items-center transition-all duration-300 hover:scale-[1.01] shadow-md cursor-pointer">
-                <div>
-                  <h4 class="font-orbitron font-bold text-xs tracking-widest text-white group-hover:text-cyber-cyan transition-colors">TESSERACT_MATRIX</h4>
-                  <span class="font-mono text-[8px] text-gray-500 block mt-1">001 // DRAW_ALGO — Algoritmo generativo</span>
-                  <span class="font-mono text-[8px] text-gray-600 block">DEC 2025</span>
-                </div>
-                <div class="w-14 h-14 rounded-full border border-cyber-cyan/30 flex items-center justify-center p-1.5 shrink-0 relative bg-black/40 shadow-inner group-hover:border-cyber-cyan transition-all">
-                  <div class="w-full h-full border border-dashed border-cyber-cyan/60 rounded-full flex items-center justify-center animate-[spin_8s_linear_infinite]"><div class="w-6 h-6 border border-cyber-blue/40 rounded"></div></div>
-                </div>
-              </div>
-              <div class="group p-5 rounded-lg border border-white/5 bg-cyber-dark hover:border-cyber-cyan/30 flex justify-between items-center transition-all duration-300 hover:scale-[1.01] shadow-md cursor-pointer">
-                <div>
-                  <h4 class="font-orbitron font-bold text-xs tracking-widest text-white group-hover:text-cyber-cyan transition-colors">FLUID_TURBULENCE</h4>
-                  <span class="font-mono text-[8px] text-gray-500 block mt-1">002 // GL_SHADER — Shader WebGL</span>
-                  <span class="font-mono text-[8px] text-gray-600 block">NOV 2025</span>
-                </div>
-                <div class="w-14 h-14 rounded-full border border-cyber-cyan/30 flex items-center justify-center p-1.5 shrink-0 relative bg-black/40 shadow-inner group-hover:border-cyber-cyan transition-all">
-                  <div class="w-full h-full border border-dotted border-cyber-cyan/60 rounded-full flex items-center justify-center animate-[spin_8s_linear_infinite]"><div class="w-6 h-6 border border-cyber-blue/40 rounded"></div></div>
-                </div>
-              </div>
-              <div class="group p-5 rounded-lg border border-white/5 bg-cyber-dark hover:border-cyber-cyan/30 flex justify-between items-center transition-all duration-300 hover:scale-[1.01] shadow-md cursor-pointer">
-                <div>
-                  <h4 class="font-orbitron font-bold text-xs tracking-widest text-white group-hover:text-cyber-cyan transition-colors">GEOMETRIC_GRAVITY</h4>
-                  <span class="font-mono text-[8px] text-gray-500 block mt-1">003 // VECTOR_FIELD — Campo vectorial</span>
-                  <span class="font-mono text-[8px] text-gray-600 block">OCT 2025</span>
-                </div>
-                <div class="w-14 h-14 rounded-full border border-cyber-cyan/30 flex items-center justify-center p-1.5 shrink-0 relative bg-black/40 shadow-inner group-hover:border-cyber-cyan transition-all">
-                  <div class="w-full h-full border border-dashed border-cyber-cyan/60 rounded-full flex items-center justify-center animate-[spin_8s_linear_infinite]"><div class="w-6 h-6 border border-cyber-blue/40 rounded"></div></div>
-                </div>
-              </div>
-              <div class="group p-5 rounded-lg border border-white/5 bg-cyber-dark hover:border-cyber-cyan/30 flex justify-between items-center transition-all duration-300 hover:scale-[1.01] shadow-md cursor-pointer">
-                <div>
-                  <h4 class="font-orbitron font-bold text-xs tracking-widest text-white group-hover:text-cyber-cyan transition-colors">COSMIC_DISSOLVE</h4>
-                  <span class="font-mono text-[8px] text-gray-500 block mt-1">004 // CANVAS_GRID — Canvas HTML5</span>
-                  <span class="font-mono text-[8px] text-gray-600 block">SEP 2025</span>
-                </div>
-                <div class="w-14 h-14 rounded-full border border-cyber-cyan/30 flex items-center justify-center p-1.5 shrink-0 relative bg-black/40 shadow-inner group-hover:border-cyber-cyan transition-all">
-                  <div class="w-full h-full border border-dotted border-cyber-cyan/60 rounded-full flex items-center justify-center animate-[spin_8s_linear_infinite]"><div class="w-6 h-6 border border-cyber-blue/40 rounded"></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- OTROS -->
+      <div class="content-section w-full flex flex-col lg:flex-row gap-4 fade-in" id="section-OTROS" style="display:none;">
+        <div class="flex-grow">
+          <div class="mb-3 text-left"><h2 class="font-orbitron text-xl sm:text-2xl font-black tracking-widest text-white mb-1">OTROS</h2><p class="text-gray-400 text-[11px] font-sans max-w-xl">Galería variada: tutoriales, process, redes sociales, música, renders en vivo y contenido exclusivo. Edita <code class="text-cyber-cyan">js/content.js</code> para añadir.</p></div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="otros-grid"></div>
         </div>
-
-        <div class="w-full lg:w-72 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-5 rounded-lg flex flex-col justify-between h-auto shadow-2xl relative shrink-0">
-          <div class="absolute top-0 right-0 w-16 h-12 border-r border-t border-cyber-cyan/15 rounded-tr"></div>
-          <div>
-            <div class="flex items-center gap-2 mb-6 pb-4 border-b border-white/5"><i data-lucide="cpu" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-[0.15em] text-white">CÓDIGO CREATIVO</h4></div>
-            <div class="flex flex-col gap-4 text-left font-sans text-[9px] text-gray-400 leading-relaxed">
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">CREATIVE WEBGL</span>Estructuras geométricas renderizadas en GPU.</div>
-              <div class="border-l border-cyber-cyan pl-3 py-0.5"><span class="font-orbitron text-[8.5px] font-bold text-white block">MATEMÁTICA</span>Ruido Perlin, Voronoi y atractores caóticos.</div>
-            </div>
+        <div class="w-full lg:w-60 bg-gradient-to-b from-cyber-dark to-black border border-white/5 p-4 rounded-lg text-left shrink-0">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/5"><i data-lucide="cpu" class="w-4 h-4 text-cyber-cyan"></i><h4 class="font-orbitron text-xs font-bold tracking-widest text-white">RECURSOS</h4></div>
+          <div class="flex flex-col gap-3 text-[10px] text-gray-400">
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">MULTIFORMATO</span>Imagen, video, link, audio.</div>
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">YOUTUBE</span>Reproductor embebido.</div>
+            <div class="border-l border-cyber-cyan pl-2"><span class="font-orbitron text-[9px] font-bold text-white block">EDITABLE</span>Modifica content.js</div>
           </div>
-          <button onclick="openInquiryModal()" class="w-full mt-6 py-2.5 px-4 bg-transparent hover:bg-cyber-cyan hover:text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] text-cyber-cyan border border-cyber-cyan/40 hover:border-transparent font-orbitron text-[10px] font-bold tracking-widest rounded transition-all duration-300 hover:scale-[1.02] cursor-pointer">VER TRABAJOS</button>
+          <button onclick="openInquiryModal()" class="w-full mt-4 py-2 px-3 bg-transparent hover:bg-cyber-cyan hover:text-black text-cyber-cyan border border-cyber-cyan/40 font-orbitron text-[9px] font-bold tracking-widest rounded cursor-pointer">VER MÁS</button>
         </div>
       </div>
 
     </div>
   </main>
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer class="relative w-full max-w-7xl mx-auto z-30 border-t border-white/5 pt-4 pb-4 flex flex-col items-center justify-center gap-3 px-2 select-none">
+  <footer class="relative w-full max-w-7xl mx-auto z-30 border-t border-white/5 pt-4 pb-4 px-4 flex flex-col items-center justify-center gap-2 select-none">
     <div class="text-center font-mono text-[9px] text-gray-500 tracking-widest uppercase">
       <span class="text-white font-semibold">CREATIVO DIGITAL, by Daibel El Creativo</span>
       <span class="text-gray-600 block mt-0.5">© 2026 CREATIVO DIGITAL. TODOS LOS DERECHOS RESERVADOS.</span>
     </div>
   </footer>
 
-  <!-- ===================== CHAT ASSISTANT ===================== -->
-  <div class="fixed bottom-6 right-6 z-40">
-    <button onclick="toggleChat()" class="w-14 h-14 bg-cyber-dark hover:bg-cyber-cyan text-cyber-cyan hover:text-black border border-cyber-cyan/30 hover:border-transparent rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_25px_rgba(0,240,255,0.5)] transition-all duration-300 hover:scale-105 cursor-pointer relative z-50 neon-border-cyan">
+  <!-- CHAT (IA) -->
+  <div class="fixed bottom-4 right-4 z-40">
+    <button onclick="toggleChat()" class="w-12 h-12 bg-cyber-dark hover:bg-cyber-cyan text-cyber-cyan hover:text-black border border-cyber-cyan/30 hover:border-transparent rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,240,255,0.2)] transition-all cursor-pointer relative z-50 neon-border-cyan">
       <div class="absolute inset-0 rounded-full border border-cyber-cyan/10 animate-ping"></div>
-      <i data-lucide="message-square" class="w-6 h-6"></i>
+      <i data-lucide="message-square" class="w-5 h-5"></i>
     </button>
-
-    <div id="chat-panel" class="hidden absolute bottom-20 right-0 w-80 h-[380px] bg-cyber-dark/95 border border-cyber-cyan/30 rounded-lg shadow-2xl flex flex-col overflow-hidden backdrop-blur-md text-left neon-border-cyan fade-in">
-      <div class="p-4 bg-black/60 border-b border-white/5 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <i data-lucide="bot" class="w-4 h-4 text-cyber-cyan animate-pulse"></i>
-          <div><h4 class="font-orbitron text-[10px] font-black tracking-widest text-white uppercase">CREATIVO_HOLO v1.1</h4><span class="font-mono text-[6.5px] text-gray-500 block">ASISTENTE COGNITIVO</span></div>
-        </div>
-        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-cyber-cyan/50"></i>
+    <div id="chat-panel" class="hidden absolute bottom-16 right-0 w-[300px] h-[420px] bg-cyber-dark/95 border border-cyber-cyan/30 rounded-lg shadow-2xl flex flex-col overflow-hidden backdrop-blur-md neon-border-cyan fade-in">
+      <div class="p-3 bg-black/60 border-b border-white/5 flex items-center justify-between">
+        <div class="flex items-center gap-2"><i data-lucide="bot" class="w-4 h-4 text-cyber-cyan animate-pulse"></i><div><h4 class="font-orbitron text-[10px] font-black tracking-widest text-white">CREATIVO IA</h4><span class="font-mono text-[6.5px] text-gray-500 block">Asistente inteligente</span></div></div>
+        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
       </div>
-
-      <div class="flex-grow p-4 overflow-y-auto space-y-3 font-sans text-xs flex flex-col" id="chat-messages"></div>
-
-      <div class="px-3 pb-2 flex gap-1.5 overflow-x-auto scrollbar-none">
-        <button onclick="sendChat('¿Cuál es su enfoque?')" class="px-2 py-1 bg-white/[0.01] border border-white/5 hover:border-cyber-cyan/30 text-[9px] text-gray-400 hover:text-white rounded-full shrink-0 transition-colors uppercase font-mono tracking-wider cursor-pointer">¿Cuál es su enfoque?</button>
-        <button onclick="sendChat('¿Cómo funciona el cotizador?')" class="px-2 py-1 bg-white/[0.01] border border-white/5 hover:border-cyber-cyan/30 text-[9px] text-gray-400 hover:text-white rounded-full shrink-0 transition-colors uppercase font-mono tracking-wider cursor-pointer">Cotizador</button>
-        <button onclick="sendChat('Contacto')" class="px-2 py-1 bg-white/[0.01] border border-white/5 hover:border-cyber-cyan/30 text-[9px] text-gray-400 hover:text-white rounded-full shrink-0 transition-colors uppercase font-mono tracking-wider cursor-pointer">Contacto</button>
+      <div class="flex-grow p-3 overflow-y-auto space-y-2 font-sans text-xs flex flex-col" id="chat-messages"></div>
+      <div class="px-2 pb-1.5 flex gap-1 overflow-x-auto scrollbar-none">
+        <button onclick="sendChat('Quiero una cotización')" class="chat-suggest-btn">💰 Cotización</button>
+        <button onclick="sendChat('Quiero un render 3D')" class="chat-suggest-btn">🎮 Render 3D</button>
+        <button onclick="sendChat('Quiero un modelo arquitectónico')" class="chat-suggest-btn">🏗️ Modelo</button>
+        <button onclick="sendChat('Quiero un diseño de marca')" class="chat-suggest-btn">🎨 Marca</button>
+        <button onclick="sendChat('Quiero un video')" class="chat-suggest-btn">🎬 Video</button>
+        <button onclick="sendChat('Contacto')" class="chat-suggest-btn">📞 Contacto</button>
       </div>
-
-      <div class="p-3 bg-black/60 border-t border-white/5 flex gap-2">
-        <input id="chat-input" type="text" placeholder="Preguntar sobre servicios..." onkeydown="if(event.key==='Enter')sendChat(this.value)" class="flex-grow bg-cyber-dark border border-white/5 rounded px-2.5 py-1.5 text-[11px] text-white focus:border-cyber-cyan outline-none font-sans" />
-        <button onclick="sendChat(document.getElementById('chat-input').value)" class="w-8 h-8 rounded bg-cyber-cyan/10 border border-cyber-cyan/20 hover:border-cyber-cyan text-cyber-cyan hover:text-black flex items-center justify-center transition-all cursor-pointer">
-          <i data-lucide="chevron-right" class="w-4 h-4"></i>
-        </button>
+      <div class="p-2 bg-black/60 border-t border-white/5 flex gap-2">
+        <input id="chat-input" type="text" placeholder="Escribe..." onkeydown="if(event.key==='Enter')sendChat(this.value)" class="flex-grow bg-cyber-dark border border-white/5 rounded px-2 py-1.5 text-[11px] text-white focus:border-cyber-cyan outline-none" />
+        <button onclick="sendChat(document.getElementById('chat-input').value)" class="w-7 h-7 rounded bg-cyber-cyan/10 border border-cyber-cyan/20 hover:border-cyber-cyan text-cyber-cyan hover:text-black flex items-center justify-center cursor-pointer"><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></button>
       </div>
     </div>
   </div>
 
-  <!-- Scripts -->
+  <script src="./js/content.js"></script>
   <script src="./js/main.js"></script>
 </body>
 </html>
