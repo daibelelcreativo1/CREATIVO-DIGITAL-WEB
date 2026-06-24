@@ -184,6 +184,130 @@ function buildTrackList() {
 }
 
 // ========================
+// CYBER VIDEO PLAYER (reproductor personalizado de video)
+// ========================
+let cyberVideo = null, cyberVideoRaf = null, cyberVideoHideTimer = null;
+function initCyberVideoPlayer() {
+  cyberVideo = document.getElementById('main-video-player');
+  const wrap = document.getElementById('cyber-video-player');
+  if (!cyberVideo || !wrap) return;
+
+  // Desactiva controles nativos para usar los personalizados
+  cyberVideo.controls = false;
+
+  cyberVideo.addEventListener('loadedmetadata', () => {
+    document.getElementById('cyber-video-duration').textContent = formatTime(cyberVideo.duration);
+    updateCyberVideoProgress();
+  });
+  cyberVideo.addEventListener('timeupdate', updateCyberVideoProgress);
+  cyberVideo.addEventListener('ended', () => {
+    wrap.classList.remove('playing');
+    document.getElementById('cyber-video-play-btn').innerHTML = '<i data-lucide="play" class="w-4 h-4"></i>';
+    document.getElementById('cyber-video-center-btn').innerHTML = '<i data-lucide="play" class="w-8 h-8"></i>';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+
+  // Mostrar/ocultar controles al mover el mouse dentro del player
+  wrap.addEventListener('mousemove', () => {
+    if (wrap.classList.contains('playing')) {
+      wrap.classList.add('show-controls');
+      clearTimeout(cyberVideoHideTimer);
+      cyberVideoHideTimer = setTimeout(() => wrap.classList.remove('show-controls'), 2600);
+    }
+  });
+
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+function toggleCyberVideo() {
+  if (!cyberVideo) return;
+  const wrap = document.getElementById('cyber-video-player');
+  try { const ctx = getAudioCtx(); if (ctx.state === 'suspended') ctx.resume(); } catch(e){}
+  if (cyberVideo.paused) {
+    cyberVideo.play().then(() => {
+      wrap.classList.add('playing');
+      document.getElementById('cyber-video-play-btn').innerHTML = '<i data-lucide="pause" class="w-4 h-4"></i>';
+      document.getElementById('cyber-video-center-btn').innerHTML = '<i data-lucide="pause" class="w-8 h-8"></i>';
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }).catch(()=>{});
+  } else {
+    cyberVideo.pause();
+    wrap.classList.remove('playing');
+    document.getElementById('cyber-video-play-btn').innerHTML = '<i data-lucide="play" class="w-4 h-4"></i>';
+    document.getElementById('cyber-video-center-btn').innerHTML = '<i data-lucide="play" class="w-8 h-8"></i>';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  }
+}
+function stopCyberVideo() {
+  if (!cyberVideo) return;
+  const wrap = document.getElementById('cyber-video-player');
+  cyberVideo.pause();
+  cyberVideo.currentTime = 0;
+  wrap.classList.remove('playing');
+  document.getElementById('cyber-video-play-btn').innerHTML = '<i data-lucide="play" class="w-4 h-4"></i>';
+  document.getElementById('cyber-video-center-btn').innerHTML = '<i data-lucide="play" class="w-8 h-8"></i>';
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+function updateCyberVideoProgress() {
+  if (!cyberVideo || !cyberVideo.duration) return;
+  const pct = (cyberVideo.currentTime / cyberVideo.duration) * 100;
+  const fill = document.getElementById('cyber-video-progress-fill');
+  const thumb = document.getElementById('cyber-video-progress-thumb');
+  const cur = document.getElementById('cyber-video-current');
+  if (fill) fill.style.width = pct + '%';
+  if (thumb) {
+    // thumb se mueve dentro del track entre los padding laterales (12px)
+    const track = document.querySelector('.cyber-video-progress');
+    if (track) {
+      const innerW = track.clientWidth - 24;
+      thumb.style.left = (12 + (pct/100) * innerW) + 'px';
+    }
+  }
+  if (cur) cur.textContent = formatTime(cyberVideo.currentTime);
+}
+function seekCyberVideo(e) {
+  if (!cyberVideo || !cyberVideo.duration) return;
+  const track = e.currentTarget;
+  const r = track.getBoundingClientRect();
+  const x = e.touches ? e.touches[0].clientX : e.clientX;
+  // Restar el padding lateral (12px) para calcular el progreso sobre la barra real
+  let ratio = (x - r.left - 12) / (r.width - 24);
+  ratio = Math.max(0, Math.min(1, ratio));
+  cyberVideo.currentTime = ratio * cyberVideo.duration;
+  updateCyberVideoProgress();
+}
+function toggleCyberVideoMute() {
+  if (!cyberVideo) return;
+  cyberVideo.muted = !cyberVideo.muted;
+  const btn = document.getElementById('cyber-video-vol-btn');
+  const vol = document.getElementById('cyber-video-vol');
+  if (btn) {
+    btn.innerHTML = cyberVideo.muted ? '<i data-lucide="volume-x" class="w-3.5 h-3.5"></i>' : '<i data-lucide="volume-2" class="w-3.5 h-3.5"></i>';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  }
+  if (vol) vol.value = cyberVideo.muted ? 0 : cyberVideo.volume;
+}
+function setCyberVideoVolume(v) {
+  if (!cyberVideo) return;
+  cyberVideo.volume = parseFloat(v);
+  cyberVideo.muted = parseFloat(v) === 0;
+  const btn = document.getElementById('cyber-video-vol-btn');
+  if (btn) {
+    btn.innerHTML = cyberVideo.muted ? '<i data-lucide="volume-x" class="w-3.5 h-3.5"></i>'
+                  : (cyberVideo.volume < 0.5 ? '<i data-lucide="volume-1" class="w-3.5 h-3.5"></i>' : '<i data-lucide="volume-2" class="w-3.5 h-3.5"></i>');
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  }
+}
+function toggleCyberVideoFullscreen() {
+  if (!cyberVideo) return;
+  const el = document.getElementById('cyber-video-player') || cyberVideo;
+  if (!document.fullscreenElement) {
+    (el.requestFullscreen || el.webkitRequestFullscreen || (()=>{})).call(el);
+  } else {
+    (document.exitFullscreen || document.webkitExitFullscreen || (()=>{})).call(document);
+  }
+}
+
+// ========================
 // CAROUSEL
 // ========================
 let carouselIndex = 0, carouselInterval = null;
@@ -201,6 +325,90 @@ function nextSlide() { goToSlide(carouselIndex+1); }
 function prevSlide() { goToSlide(carouselIndex-1); }
 function startCarousel() { stopCarousel(); carouselInterval = setInterval(nextSlide, 3500); }
 function stopCarousel() { if (carouselInterval) clearInterval(carouselInterval); }
+
+// ========================
+// PROYECTOS DESTACADOS - Rotación diaria a la 1:00 AM (hora RD)
+// ========================
+// Recoge automáticamente TODAS las imágenes del contenido (portafolio + galerías).
+// Si agregas más items, se reconocen solos.
+function getAllContentImages() {
+  const seen = new Set();
+  const list = [];
+  const push = (img, title, category, location) => {
+    if (!img) return;
+    const key = (title || '') + '|' + img;
+    if (seen.has(key)) return;
+    seen.add(key);
+    list.push({ image: img, title: title || 'PROYECTO DESTACADO', category: category || 'CREATIVO', location: location || 'Creativo Digital' });
+  };
+  PORTFOLIO_PROJECTS.forEach(p => push(p.imageUrl, p.title, p.category, p.location));
+  ARQUITECTURA_ITEMS.forEach(p => push(p.src, p.title, p.tag, 'Arquitectura'));
+  DISENO_ITEMS.forEach(p => push(p.src, p.title, p.tag, 'Diseño Gráfico'));
+  OTROS_ITEMS.forEach(p => { if (p.type === 'image') push(p.src, p.title, 'OTROS', ''); });
+  return list.length ? list : FEATURED_PROJECTS.map(p => ({ ...p }));
+}
+
+// Semilla aleatoria determinista por día (hora RD = UTC-4).
+// Garantiza que durante todo el mismo día se vean los mismos destacados,
+// y que al llegar la 1:00 AM la selección cambie.
+function getRDDateString() {
+  // Hora actual en zona America/Santo_Domingo (UTC-4)
+  const now = new Date();
+  const rd = new Date(now.getTime() + (now.getTimezoneOffset() - (-240)) * 60000);
+  return rd.toISOString().slice(0, 10); // YYYY-MM-DD
+}
+
+// PRNG determinista (mulberry32) para que el día sea estable
+function seededRandom(seed) {
+  return function() {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function hashString(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+
+// Devuelve hasta 10 proyectos destacados del día (estables durante todo el día)
+function getDailyFeatured() {
+  const pool = getAllContentImages();
+  const dayKey = getRDDateString();
+  const rng = seededRandom(hashString(dayKey));
+  // Selección aleatoria sin repetición
+  const copy = pool.slice();
+  const picked = [];
+  const count = Math.min(10, copy.length);
+  for (let i = 0; i < count; i++) {
+    const idx = Math.floor(rng() * copy.length);
+    picked.push(copy.splice(idx, 1)[0]);
+  }
+  return picked;
+}
+
+// Reemplaza FEATURED_PROJECTS por la selección diaria y (re)construye el carrusel
+function refreshDailyFeatured() {
+  const picked = getDailyFeatured();
+  FEATURED_PROJECTS.length = 0;
+  picked.forEach(p => FEATURED_PROJECTS.push(p));
+  if (document.getElementById('carousel-track')) buildCarousel();
+}
+
+// Programa la próxima rotación a la 1:00 AM (hora RD). Si la página queda abierta,
+// se actualiza sola; si no, al recargar toma el día actual automáticamente.
+function scheduleNextDailyRotation() {
+  const now = new Date();
+  // Próxima 1:00 AM en hora local (se calcula sobre el reloj del navegador)
+  const next = new Date(now);
+  next.setHours(1, 0, 5, 0); // 1:00:05 AM
+  if (next <= now) next.setDate(next.getDate() + 1);
+  const ms = next - now;
+  setTimeout(() => { refreshDailyFeatured(); scheduleNextDailyRotation(); }, ms);
+}
+
 function buildCarousel() {
   const tr = document.getElementById('carousel-track');
   const dt = document.getElementById('carousel-dots');
@@ -424,6 +632,7 @@ function navigateTo(section) {
   const t = document.getElementById(map[section]);
   if (t) { t.style.display = ''; t.classList.remove('fade-in'); void t.offsetWidth; t.classList.add('fade-in'); }
   if (section === 'MÚSICA') setTimeout(() => { buildPiano(); buildTrackList(); }, 100);
+  if (section === 'VIDEO') setTimeout(initCyberVideoPlayer, 100);
   if (section === 'INICIO') setTimeout(buildCarousel, 100);
   if (section === 'EXPLORAR') setTimeout(renderPortfolioGrid, 100);
   document.getElementById('mobile-menu')?.classList.add('hidden');
@@ -433,24 +642,107 @@ function navigateTo(section) {
 }
 function moveRadarIndicator(section) {
   const ind = document.getElementById('radar-indicator');
-  if (!ind) return;
-  const items = document.querySelectorAll('.radar-menu-item');
-  let idx = 0;
-  items.forEach((it,i) => { if (it.dataset.section === section) idx = i; });
-  ind.style.transform = `translateY(${(idx - (items.length/2 - 0.5)) * 44}px)`;
-  ind.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1)';
+  const menuList = document.getElementById('radar-menu-list');
+  if (!ind || !menuList) return;
+  const items = menuList.querySelectorAll('.radar-menu-item');
+  const activeItem = Array.from(items).find(it => it.dataset.section === section);
+  if (!activeItem) return;
+
+  // Ambos (indicador y items) comparten el mismo contenedor padre posicionado.
+  // El centro vertical real del item activo, relativo a ese padre, da el `top` exacto.
+  const parent = ind.offsetParent || menuList.offsetParent;
+  if (!parent) return;
+
+  const activeRect = activeItem.getBoundingClientRect();
+  const parentRect = parent.getBoundingClientRect();
+  const centerY = activeRect.top - parentRect.top + (activeRect.height / 2);
+
+  // El círculo se fija exactamente en el centro vertical; translateY(-50%) lo ajusta.
+  ind.style.top = `${centerY}px`;
+  ind.style.left = `6px`;          // separación a la izquierda, siempre la misma
+  ind.style.transform = 'translateY(-50%)';
+  ind.style.transition = 'top 0.4s cubic-bezier(0.4,0,0.2,1)';
 }
 
 // ========================
-// SEARCH
+// SEARCH (inteligente - busca en toda la web)
 // ========================
 function handleSearch(q) {
   const r = document.getElementById('search-results'); if (!r) return;
   if (!q.trim()) { r.classList.add('hidden'); return; }
   const s = q.toLowerCase();
-  const f = PORTFOLIO_PROJECTS.filter(p => p.title.toLowerCase().includes(s) || p.category.toLowerCase().includes(s) || p.description.toLowerCase().includes(s) || p.tags.some(t => t.toLowerCase().includes(s)));
+  const results = [];
+
+  // Buscar en PORTAFOLIO
+  PORTFOLIO_PROJECTS.forEach(p => {
+    const searchable = [p.title, p.category, p.description, p.location, ...p.tags].join(' ').toLowerCase();
+    if (searchable.includes(s)) results.push({ type:'portafolio', id:p.id, title:p.title, subtitle:p.category, desc:p.description, img:p.imageUrl, section:'EXPLORAR', action:`openProjectDetail('${p.id}')` });
+  });
+
+  // Buscar en SERVICIOS
+  PRIMARY_SERVICES.forEach(svc => {
+    const searchable = [svc.title, svc.description, svc.longDescription, ...svc.benefits].join(' ').toLowerCase();
+    if (searchable.includes(s)) results.push({ type:'servicio', title:svc.title, subtitle:'SERVICIO', desc:svc.description, icon:svc.iconName, section:'SERVICIOS', action:`navigateTo('${svc.title}')` });
+  });
+
+  // Buscar en ARQUITECTURA
+  ARQUITECTURA_ITEMS.forEach(it => {
+    const searchable = [it.title, it.tag, it.subtitle||''].join(' ').toLowerCase();
+    if (searchable.includes(s)) results.push({ type:'arquitectura', title:it.title, subtitle:it.tag, desc:it.subtitle||'Galería de Arquitectura', img:it.src, section:'ARQUITECTURA', action:`navigateTo('ARQUITECTURA')` });
+  });
+
+  // Buscar en DISEÑO GRÁFICO
+  DISENO_ITEMS.forEach(it => {
+    const searchable = [it.title, it.tag, it.subtitle||''].join(' ').toLowerCase();
+    if (searchable.includes(s)) results.push({ type:'diseno', title:it.title, subtitle:it.tag, desc:it.subtitle||'Galería de Diseño', img:it.src, section:'DISEÑO GRÁFICO', action:`navigateTo('DISEÑO GRÁFICO')` });
+  });
+
+  // Buscar en VIDEOS
+  VIDEOS_LIST.forEach(v => {
+    const searchable = [v.title, v.duration].join(' ').toLowerCase();
+    if (searchable.includes(s)) results.push({ type:'video', title:v.title, subtitle:'VIDEO', desc:'Producción audiovisual', img:v.cover, section:'VIDEO', action:`openFullscreenVideo('${v.url}')` });
+  });
+
+  // Buscar en MÚSICA
+  MUSIC_TRACKS.forEach(t => {
+    const searchable = [t.title, t.artist].join(' ').toLowerCase();
+    if (searchable.includes(s)) results.push({ type:'musica', title:t.title, subtitle:'MÚSICA', desc:t.artist, section:'MÚSICA', action:`playTrack('${t.id}'); navigateTo('MÚSICA')` });
+  });
+
+  // Buscar en OTROS
+  OTROS_ITEMS.forEach(it => {
+    const searchable = [it.title, it.desc||'', it.type].join(' ').toLowerCase();
+    if (searchable.includes(s)) {
+      let action = '';
+      if (it.type==='youtube') action = `openYouTubePlayer('${it.youtubeId}','${it.title}')`;
+      else if (it.type==='link') action = `window.open('${it.url}','_blank')`;
+      else if (it.type==='video') action = `openFullscreenVideo('${it.src}')`;
+      else if (it.type==='audio') action = `playExternalAudio('${it.src}','${it.title}')`;
+      else if (it.type==='image') action = `openFullscreenImage('${it.src}')`;
+      results.push({ type:'otros', title:it.title, subtitle:(it.type||'OTROS').toUpperCase(), desc:it.desc||'', img:it.src, section:'OTROS', action });
+    }
+  });
+
   r.classList.remove('hidden');
-  r.innerHTML = f.length ? f.map(p => `<div class="p-3 hover:bg-cyber-cyan/10 flex items-center gap-3 cursor-pointer group text-left" onclick="openProjectDetail('${p.id}'); document.getElementById('search-input').value=''; document.getElementById('search-results').classList.add('hidden');"><img src="${p.imageUrl}" class="w-10 h-10 object-cover rounded border border-white/10 shrink-0" /><div class="flex-grow min-w-0"><div class="flex items-center justify-between gap-2"><span class="font-orbitron text-[10px] font-bold text-white truncate">${p.title}</span><span class="font-mono text-[7px] bg-cyber-blue/80 text-white px-1 py-0.5 rounded shrink-0">${p.category}</span></div><p class="font-sans text-[9px] text-gray-400 truncate mt-0.5">${p.description}</p></div></div>`).join('') : '<div class="p-4 text-center font-mono text-[10px] text-gray-500">SIN RESULTADOS</div>';
+  if (!results.length) { r.innerHTML = '<div class="p-4 text-center font-mono text-[10px] text-gray-500">SIN RESULTADOS</div>'; return; }
+
+  r.innerHTML = results.map(item => {
+    const imgHtml = item.img ? `<img src="${item.img}" class="w-10 h-10 object-cover rounded border border-white/10 shrink-0" />` :
+                    item.icon ? `<div class="w-10 h-10 rounded border border-cyber-cyan/20 bg-cyber-cyan/10 flex items-center justify-center shrink-0"><i data-lucide="${item.icon}" class="w-4 h-4 text-cyber-cyan"></i></div>` :
+                    `<div class="w-10 h-10 rounded border border-white/10 bg-white/[0.02] flex items-center justify-center shrink-0"><i data-lucide="file" class="w-4 h-4 text-gray-500"></i></div>`;
+    return `<div class="p-3 hover:bg-cyber-cyan/10 flex items-center gap-3 cursor-pointer group text-left" onclick="${item.action}; document.getElementById('search-input').value=''; document.getElementById('search-results').classList.add('hidden');">
+      ${imgHtml}
+      <div class="flex-grow min-w-0">
+        <div class="flex items-center justify-between gap-2">
+          <span class="font-orbitron text-[10px] font-bold text-white truncate">${item.title}</span>
+          <span class="font-mono text-[7px] bg-cyber-blue/80 text-white px-1 py-0.5 rounded shrink-0">${item.subtitle}</span>
+        </div>
+        <p class="font-sans text-[9px] text-gray-400 truncate mt-0.5">${item.desc}</p>
+      </div>
+    </div>`;
+  }).join('');
+
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 function toggleMobileMenu() { document.getElementById('mobile-menu')?.classList.toggle('hidden'); }
 
@@ -644,9 +936,15 @@ function renderStats() {
   }).join('');
 }
 
+// Mapa de servicios a secciones
+const SERVICE_TO_SECTION = { 'ARQUITECTURA':'ARQUITECTURA', 'DISEÑO GRÁFICO':'DISEÑO GRÁFICO', 'VIDEO':'VIDEO', 'MÚSICA':'MÚSICA' };
+
 function renderServices() {
   const c = document.getElementById('services-grid'); if (!c) return;
-  c.innerHTML = PRIMARY_SERVICES.map((s,i) => `<div onclick="openServiceDetail('${s.id}')" class="group relative p-4 bg-gradient-to-b from-cyber-dark to-black border border-white/5 hover:border-cyber-cyan/40 transition-all rounded-lg cursor-pointer flex flex-col gap-2 shadow-lg"><div class="w-10 h-10 rounded border border-white/10 flex items-center justify-center bg-white/[0.01]"><i data-lucide="${s.iconName}" class="w-5 h-5 text-cyber-cyan"></i></div><h3 class="font-orbitron text-[11px] font-bold tracking-widest text-white group-hover:text-cyber-cyan">${s.title}</h3><p class="font-sans text-[10px] text-gray-400 leading-relaxed">${s.description}</p></div>`).join('');
+  c.innerHTML = PRIMARY_SERVICES.map((s,i) => {
+    const sectionTarget = SERVICE_TO_SECTION[s.title] || 'EXPLORAR';
+    return `<div onclick="navigateTo('${sectionTarget}')" class="group relative p-4 bg-gradient-to-b from-cyber-dark to-black border border-white/5 hover:border-cyber-cyan/40 transition-all rounded-lg cursor-pointer flex flex-col gap-2 shadow-lg"><div class="w-10 h-10 rounded border border-white/10 flex items-center justify-center bg-white/[0.01]"><i data-lucide="${s.iconName}" class="w-5 h-5 text-cyber-cyan"></i></div><h3 class="font-orbitron text-[11px] font-bold tracking-widest text-white group-hover:text-cyber-cyan">${s.title}</h3><p class="font-sans text-[10px] text-gray-400 leading-relaxed">${s.description}</p><div class="mt-auto pt-2 flex items-center gap-1 text-[8px] font-mono text-cyber-cyan/60 group-hover:text-cyber-cyan transition-colors"><i data-lucide="arrow-right" class="w-3 h-3"></i><span>VER SECCIÓN</span></div></div>`;
+  }).join('');
   if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
@@ -735,6 +1033,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGalleries();
   buildCarousel();
   renderPortfolioGrid();
+  // Proyectos destacados: selección aleatoria diaria (1:00 AM hora RD)
+  refreshDailyFeatured();
+  scheduleNextDailyRotation();
   navigateTo('INICIO');
 
   const si = document.getElementById('search-input');
@@ -748,6 +1049,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   document.addEventListener('keydown', e => { if (e.key==='Escape') closeAllViewers(); });
   renderChatMessages();
+
+  // Inicializar reproductor de video personalizado (cyberpunk)
+  initCyberVideoPlayer();
+
+  // Recalcular la posición del círculo selector al cambiar el tamaño de ventana
+  // o tras cambios de layout, para mantener el centrado exacto por centerY real
+  window.addEventListener('resize', () => moveRadarIndicator(activeSection));
+  window.addEventListener('load', () => moveRadarIndicator(activeSection));
+  setTimeout(() => moveRadarIndicator(activeSection), 300);
 });
 
 // ========================

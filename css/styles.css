@@ -30,32 +30,30 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 28px;
-    height: 28px;
+    width: 0;
+    height: 0;
     pointer-events: none;
     z-index: 999999;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.12s ease;
+    /* Sin translate: el origen (0,0) del elemento = coordenadas del mouse = la PUNTA */
   }
 
-  /* Λ contorneada (invertida) en cian */
+  /* Λ invertida (caret ^ apuntando arriba): la punta superior es el punto de clic */
   .custom-cursor::before {
     content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 16px;
     height: 16px;
     border-left: 2px solid #00f0ff;
     border-top: 2px solid #00f0ff;
+    transform-origin: top left; /* rota alrededor de la punta (esquina superior-izq) */
     transform: rotate(45deg);
     display: block;
-    position: relative;
-    top: 2px;
     filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.6));
   }
 
-  /* Cursor grande al hover de elementos interactivos */
+  /* Cursor grande al hover de elementos interactivos (la punta sigue fija en el clic) */
   .custom-cursor.hover::before {
     width: 22px;
     height: 22px;
@@ -354,6 +352,134 @@ body {
   border-radius: 2px;
   transition: width 0.3s;
   box-shadow: 0 0 6px rgba(0, 240, 255, 0.5);
+}
+
+/* ==============================
+   CYBER VIDEO PLAYER (personalizado, estilo cyberpunk)
+   ============================== */
+.cyber-video-player {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+}
+.cyber-video-player video {
+  display: block;
+  width: 100%;
+  outline: none;
+}
+/* Overlay oscura con botón central */
+.cyber-video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%);
+  cursor: pointer;
+  transition: opacity 0.3s;
+  z-index: 5;
+}
+.cyber-video-player.playing .cyber-video-overlay { opacity: 0; pointer-events: none; }
+.cyber-video-center-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(0, 240, 255, 0.15);
+  border: 2px solid rgba(0, 240, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00f0ff;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.2);
+  transition: transform 0.2s;
+}
+.cyber-video-overlay:hover .cyber-video-center-btn {
+  transform: scale(1.1);
+  background: rgba(0, 240, 255, 0.25);
+}
+.cyber-video-center-btn svg { transform: translateX(2px); }
+
+/* Controles personalizados */
+.cyber-video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5) 70%, transparent);
+  padding: 4px 0 0;
+  z-index: 6;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+}
+.cyber-video-player.playing:hover .cyber-video-controls,
+.cyber-video-player.playing.show-controls .cyber-video-controls {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.cyber-video-player:not(.playing) .cyber-video-controls {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Barra de progreso */
+.cyber-video-progress {
+  position: relative;
+  height: 16px;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+.cyber-video-progress::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+}
+.cyber-video-progress-fill {
+  position: absolute;
+  left: 12px;
+  height: 4px;
+  background: linear-gradient(90deg, #0072ff, #00f0ff);
+  border-radius: 2px;
+  width: 0%;
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  transition: width 0.15s linear;
+}
+.cyber-video-progress-thumb {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #00f0ff;
+  border-radius: 50%;
+  left: 12px;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cyber-video-progress:hover .cyber-video-progress-thumb { opacity: 1; }
+
+/* Iconos de los controles */
+.cyber-video-controls button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cyber-video-controls input[type="range"] {
+  background: rgba(255,255,255,0.2);
+  height: 3px;
 }
 
 /* ==============================

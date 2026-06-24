@@ -11,40 +11,43 @@ const SECTIONS = ['INICIO','EXPLORAR','SERVICIOS','ARQUITECTURA','DISEÑO GRÁFI
 
 // ===== PROYECTOS DEL PORTAFOLIO =====
 const PORTFOLIO_PROJECTS = [
-  { id:'p1', title:'TORRE CELESTE', category:'ARQUITECTURA', imageUrl:'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=700&q=80', description:'Complejo residencial y comercial inteligente de 45 pisos con jardines verticales, optimización bioclimática pasiva y fachada cinética.', tags:['Sostenible','Bioclimática','BIM'], location:'Medellín, COL', year:'2025' },
-  { id:'p2', title:'CASA AEROCAFÉ', category:'ARQUITECTURA', imageUrl:'./img/luxury_villa_1781381880840.jpg', description:'Villa contemporánea de un solo nivel en madera laminada y concreto visto con cubierta verde integrada.', tags:['Madera','Cubierta Verde','Lujo'], location:'Manizales, COL', year:'2024' },
-  { id:'p3', title:'CO-WORKING MATRIX', category:'DISEÑO 3D', imageUrl:'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80', description:'Visualización fotorrealista en Unreal Engine 5 con iluminación volumétrica avanzada.', tags:['3D','Unreal','VR'], location:'Metaverso', year:'2025' },
-  { id:'p4', title:'IDENTIDAD ALPHA', category:'DISEÑO GRÁFICO', imageUrl:'./img/design_mockup_1781381899975.jpg', description:'Manual de identidad visual corporativa completo con tipografía exclusiva y sistema de color.', tags:['Branding','Tipografía','Packaging'], location:'Bogotá, COL', year:'2025' },
-  { id:'p5', title:'CATHEDRAL RENDER', category:'DISEÑO 3D', imageUrl:'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=700&q=80', description:'Representación volumétrica de catedral futurista con materiales PBR y render 8K.', tags:['3D','V-Ray','Concept'], location:'París, FRA', year:'2024' },
-  { id:'p6', title:'NEXUS BRANDING', category:'DISEÑO GRÁFICO', imageUrl:'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=700&q=80', description:'Reconstrucción de marca global con nueva narrativa visual y aplicaciones multiplataforma.', tags:['Rebranding','UI/UX'], location:'Miami, USA', year:'2025' },
-  { id:'p7', title:'CORTOMETRAJE SENSIS', category:'VIDEO', imageUrl:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=700&q=80', description:'Dirección de arte y post-producción audiovisual cinematográfica en 4K HDR.', tags:['Edición','Color','Audiovisual'], location:'Cali, COL', year:'2024' },
-  { id:'p8', title:'ARTE GENERATIVO SOLIS', category:'OTROS', imageUrl:'https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=700&q=80', description:'Criptoarte matemático con algoritmos p5.js y shaders GLSL en tiempo real.', tags:['Generativo','WebGL','NFT'], location:'Tokio, JPN', year:'2025' }
+  { id:'p1', title:'TORRE CELESTE', category:'ARQUITECTURA', imageUrl:'./imagen1.png', description:'Complejo residencial y comercial inteligente de 45 pisos con jardines verticales, optimización bioclimática pasiva y fachada cinética.', tags:['Sostenible','Bioclimática','BIM'], location:'Medellín, COL', year:'2025' },
+  { id:'p2', title:'CASA AEROCAFÉ', category:'ARQUITECTURA', imageUrl:'./imagen1.png', description:'Villa contemporánea de un solo nivel en madera laminada y concreto visto con cubierta verde integrada.', tags:['Madera','Cubierta Verde','Lujo'], location:'Manizales, COL', year:'2024' },
+  { id:'p3', title:'CO-WORKING MATRIX', category:'DISEÑO 3D', imageUrl:'./imagen1.png', description:'Visualización fotorrealista en Unreal Engine 5 con iluminación volumétrica avanzada.', tags:['3D','Unreal','VR'], location:'Metaverso', year:'2025' },
+  { id:'p4', title:'IDENTIDAD ALPHA', category:'DISEÑO GRÁFICO', imageUrl:'./imagen1.png', description:'Manual de identidad visual corporativa completo con tipografía exclusiva y sistema de color.', tags:['Branding','Tipografía','Packaging'], location:'Bogotá, COL', year:'2025' },
+  { id:'p5', title:'CATHEDRAL RENDER', category:'DISEÑO 3D', imageUrl:'./imagen1.png', description:'Representación volumétrica de catedral futurista con materiales PBR y render 8K.', tags:['3D','V-Ray','Concept'], location:'París, FRA', year:'2024' },
+  { id:'p6', title:'NEXUS BRANDING', category:'DISEÑO GRÁFICO', imageUrl:'./imagen1.png', description:'Reconstrucción de marca global con nueva narrativa visual y aplicaciones multiplataforma.', tags:['Rebranding','UI/UX'], location:'Miami, USA', year:'2025' },
+  { id:'p7', title:'CORTOMETRAJE SENSIS', category:'VIDEO', imageUrl:'./imagen1.png', description:'Dirección de arte y post-producción audiovisual cinematográfica en 4K HDR.', tags:['Edición','Color','Audiovisual'], location:'Cali, COL', year:'2024' },
+  { id:'p8', title:'ARTE GENERATIVO SOLIS', category:'OTROS', imageUrl:'./imagen1.png', description:'Criptoarte matemático con algoritmos p5.js y shaders GLSL en tiempo real.', tags:['Generativo','WebGL','NFT'], location:'Tokio, JPN', year:'2025' }
 ];
 
 // ===== CARRUSEL (Proyectos Destacados) =====
+// Se genera DINÁMICAMENTE cada día a la 1:00 AM (hora RD).
+// Recoge automáticamente todas las imágenes disponibles en la página
+// (portafolio, galerías, etc.) y selecciona 4 al azar por día.
+// Si agregas más contenido, se reconoce y se incluye automáticamente.
 const FEATURED_PROJECTS = [
-  { title:'TORRE CELESTE', category:'ARQUITECTURA', location:'Bogotá, COL', image:'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=700&q=80' },
-  { title:'CASA AEROCAFÉ', category:'ARQUITECTURA', location:'Manizales, COL', image:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80' },
-  { title:'DISEÑO 3D SCOPE', category:'DISEÑO 3D', location:'Metaverso', image:'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=700&q=80' },
-  { title:'IDENTIDAD ALPHA', category:'DISEÑO GRÁFICO', location:'Mundial', image:'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=700&q=80' }
+  { title:'TORRE CELESTE', category:'ARQUITECTURA', location:'Bogotá, COL', image:'./imagen1.png' },
+  { title:'CASA AEROCAFÉ', category:'ARQUITECTURA', location:'Manizales, COL', image:'./imagen1.png' },
+  { title:'DISEÑO 3D SCOPE', category:'DISEÑO 3D', location:'Metaverso', image:'./imagen1.png' },
+  { title:'IDENTIDAD ALPHA', category:'DISEÑO GRÁFICO', location:'Mundial', image:'./imagen1.png' }
 ];
 
 // ===== MÚSICA / AUDIOS =====
-// URLs .mp3 directas y estables (SoundHelix - dominio público de demo)
 const MUSIC_TRACKS = [
-  { id:'t1', title:'Cyber Dawn', artist:'Daibel El Creativo', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-  { id:'t2', title:'Neon Pulse', artist:'Daibel El Creativo', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-  { id:'t3', title:'Digital Horizon', artist:'Daibel El Creativo', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
-  { id:'t4', title:'Quantum Beat', artist:'Daibel El Creativo', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3' },
-  { id:'t5', title:'Midnight Circuit', artist:'Daibel El Creativo', url:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3' }
+  { id:'t1', title:'Cyber Dawn', artist:'Daibel El Creativo', url:'./Musica1.mp3' },
+  { id:'t2', title:'Neon Pulse', artist:'Daibel El Creativo', url:'./Musica1.mp3' },
+  { id:'t3', title:'Digital Horizon', artist:'Daibel El Creativo', url:'./Musica1.mp3' },
+  { id:'t4', title:'Quantum Beat', artist:'Daibel El Creativo', url:'./Musica1.mp3' },
+  { id:'t5', title:'Midnight Circuit', artist:'Daibel El Creativo', url:'./Musica1.mp3' }
 ];
 
 // ===== VIDEO (archivos .mp4 reales) =====
 const VIDEOS_LIST = [
-  { id:'v1', title:'CINEMÁTICA BRUTALISTA', duration:'2:34', cover:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=400&q=80', url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' },
-  { id:'v2', title:'SINFONÍA DE ACERO', duration:'1:53', cover:'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&w=400&q=80', url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
-  { id:'v3', title:'ECOS DEL TIEMPO', duration:'0:15', cover:'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80', url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-  { id:'v4', title:'RECORRIDO VIRTUAL 360°', duration:'3:10', cover:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80', url:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4' }
+  { id:'v1', title:'CINEMÁTICA BRUTALISTA', duration:'2:34', cover:'./imagen1.png', url:'./video1.mp4' },
+  { id:'v2', title:'SINFONÍA DE ACERO', duration:'1:53', cover:'./imagen1.png', url:'./video1.mp4' },
+  { id:'v3', title:'ECOS DEL TIEMPO', duration:'0:15', cover:'./imagen1.png', url:'./video1.mp4' },
+  { id:'v4', title:'RECORRIDO VIRTUAL 360°', duration:'3:10', cover:'./imagen1.png', url:'./video1.mp4' }
 ];
 
 // ===== SERVICIOS =====
@@ -67,20 +70,20 @@ const BASE_RATES = {
 
 // ===== ARQUITECTURA (galería) =====
 const ARQUITECTURA_ITEMS = [
-  { type:'image', title:'CASA AEROCAFÉ', tag:'VIVIENDA', src:'./img/luxury_villa_1781381880840.jpg', span:7, big:true, subtitle:'Vivienda contemporánea' },
-  { type:'image', title:'EDIFICIO ORIGAMI', tag:'COMERCIAL', src:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80', span:5 },
-  { type:'image', title:'PABELLÓN ZENITH', tag:'VIVIENDAS', src:'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80', span:5 },
-  { type:'image', title:'CAMPUS VERDE', tag:'INSTITUCIONAL', src:'https://images.unsplash.com/photo-1504297050568-910d24c426d3?auto=format&fit=crop&w=400&q=80', span:5 },
-  { type:'image', title:'PORTUARIO', tag:'URBANISMO', src:'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=400&q=80', span:5 }
+  { type:'image', title:'CASA AEROCAFÉ', tag:'VIVIENDA', src:'./imagen1.png', span:7, big:true, subtitle:'Vivienda contemporánea' },
+  { type:'image', title:'EDIFICIO ORIGAMI', tag:'COMERCIAL', src:'./imagen1.png', span:5 },
+  { type:'image', title:'PABELLÓN ZENITH', tag:'VIVIENDAS', src:'./imagen1.png', span:5 },
+  { type:'image', title:'CAMPUS VERDE', tag:'INSTITUCIONAL', src:'./imagen1.png', span:5 },
+  { type:'image', title:'PORTUARIO', tag:'URBANISMO', src:'./imagen1.png', span:5 }
 ];
 
 // ===== DISEÑO GRÁFICO (galería) =====
 const DISENO_ITEMS = [
-  { type:'image', title:'IDENTIDAD ALPHA', tag:'BRANDING', src:'./img/design_mockup_1781381899975.jpg', span:7, big:true, subtitle:'Branding & Narrative' },
-  { type:'image', title:'MANUAL ALPHA', tag:'IDENTIDAD', src:'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=80', span:5 },
-  { type:'image', title:'LÚMEN', tag:'EDITORIAL', src:'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=400&q=80', span:5 },
-  { type:'image', title:'NEXUS', tag:'PUBLICIDAD', src:'https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=400&q=80', span:5 },
-  { type:'image', title:'SOLIS', tag:'DIGITAL', src:'https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=400&q=80', span:5 }
+  { type:'image', title:'IDENTIDAD ALPHA', tag:'BRANDING', src:'./imagen1.png', span:7, big:true, subtitle:'Branding & Narrative' },
+  { type:'image', title:'MANUAL ALPHA', tag:'IDENTIDAD', src:'./imagen1.png', span:5 },
+  { type:'image', title:'LÚMEN', tag:'EDITORIAL', src:'./imagen1.png', span:5 },
+  { type:'image', title:'NEXUS', tag:'PUBLICIDAD', src:'./imagen1.png', span:5 },
+  { type:'image', title:'SOLIS', tag:'DIGITAL', src:'./imagen1.png', span:5 }
 ];
 
 // ===== OTROS: CONTENIDO VARIADO =====
@@ -91,12 +94,12 @@ const OTROS_ITEMS = [
   { type:'link', title:'Instagram - Daibel El Creativo', url:'https://www.instagram.com/daibelelcreativo?igsh=NjlsNnR4MnlsZ3Bq', desc:'Portafolio visual y contenido detrás de escena en tiempo real.' },
   { type:'link', title:'YouTube - Daibel El Creativo', url:'https://www.youtube.com/@daibelelcreativo', desc:'Videos de procesos creativos, renders, diseño y más.' },
   { type:'link', title:'WhatsApp - Contacto Directo', url:'https://wa.me/18297527990', desc:'Comunícate directamente para consultas rápidas y cotizaciones.' },
-  { type:'video', title:'Demo Reel 2025', src:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', desc:'Reel con los mejores proyectos del año: arquitectura, branding, 3D y motion.' },
-  { type:'video', title:'Animación de Marca - Identidad Alpha', src:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', desc:'Motion graphics para la presentación de marca completa de Identidad Alpha.' },
-  { type:'image', title:'Arte Generativo Solis', src:'https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=400&q=80', desc:'Colección de arte algorítmico con patrones fractales y geometría computacional.' },
-  { type:'image', title:'Fotografía Urbana Nocturna', src:'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=400&q=80', desc:'Serie fotográfica de arquitectura nocturna con iluminación artificial.' },
-  { type:'audio', title:'Muestra Sonora - Cyber Dawn', src:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', desc:'Pista original de ambient electrónico para proyectos de video.' },
-  { type:'audio', title:'Logo Sonoro - Creativo Digital', src:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', desc:'Identidad de sonido de marca: firma auditiva única.' }
+  { type:'video', title:'Demo Reel 2025', src:'./video1.mp4', desc:'Reel con los mejores proyectos del año: arquitectura, branding, 3D y motion.' },
+  { type:'video', title:'Animación de Marca - Identidad Alpha', src:'./video1.mp4', desc:'Motion graphics para la presentación de marca completa de Identidad Alpha.' },
+  { type:'image', title:'Arte Generativo Solis', src:'./imagen1.png', desc:'Colección de arte algorítmico con patrones fractales y geometría computacional.' },
+  { type:'image', title:'Fotografía Urbana Nocturna', src:'./imagen1.png', desc:'Serie fotográfica de arquitectura nocturna con iluminación artificial.' },
+  { type:'audio', title:'Muestra Sonora - Cyber Dawn', src:'./Musica1.mp3', desc:'Pista original de ambient electrónico para proyectos de video.' },
+  { type:'audio', title:'Logo Sonoro - Creativo Digital', src:'./Musica1.mp3', desc:'Identidad de sonido de marca: firma auditiva única.' }
 ];
 
 // ===== CONFIGURACIÓN GENERAL =====
